@@ -31,22 +31,14 @@ def signUp():
     data = request.get_json()
     # check if user already exists
     if Customer.find_one({"phone": data['phone']}):
-        return jsonify({"message": "User already exists"})
-    # insert user in db
-    Customer.insert_one(data)
+        # get user name from db
+        name = Customer.find_one({"phone": data['phone']})['name']
+        return jsonify({"message": "Welcome Back {}".format(name)})
+    else:
+        # TODO: Return Sigu Up Page
+        return jsonify({"message": "Welcome to our app"})
 
-    return jsonify({"message": "User created successfully"})
-
-
-
-@app.route('/login', methods=['POST'])
-def login():
-    # get user phone number name from request
-    data = request.get_json()
-    # get user from db
-    user = Customer.find_one({"phone": data['phone']})
-    return dumps(user)
 
 
 if __name__ == "__main__":
-    app.run(threaded=True, port=5000)
+    app.run(threaded=True, port=5000, debug=True)
