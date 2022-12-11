@@ -123,8 +123,8 @@ def bangles():
     return render_template('bangles_catalogue.html')
 
 @app.route('/jewellery')
-def bangles():
+def jewellery():
     return render_template('jewellery.html')
 
 if __name__ == "__main__":
-    app.run(threaded=True, port=5000, debug=True)
+    app.run(threaded=True, port=5000, debug=True,host="0.0.0.0")
