@@ -76,6 +76,8 @@ def getCustomer():
             return generateQR(rep_id)
 
 
+@app.route('/getCustomer/newdata', methods=['POST'])
+
 @app.route('/getCustomer/userdata', methods=['POST'])
 def getUserData():
     # TODO: get user data from the session id of the user and return it to the Sales Rep
@@ -87,6 +89,7 @@ def getUserData():
 @app.route('/getCustomer/qrCode1', methods=['GET'])
 def getCustomer1():
     return generateQR("test")
+
 
 
 @app.route('/getCustomer/signUp', methods=['POST'])
