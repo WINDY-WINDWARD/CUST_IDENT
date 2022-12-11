@@ -5,9 +5,12 @@ from bson.json_util import dumps
 from bson.json_util import loads
 from flask import Flask, request, jsonify, render_template
 from qrGen import generateQR
+from dotenv import load_dotenv
 import os
 
 app = Flask(__name__, template_folder='template', static_folder='static')
+
+load_dotenv()
 
 # load db url from .env file
 db_url = os.environ.get('MONGO_LINK')
@@ -32,6 +35,9 @@ DeviceFingerprint = db.DeviceFingerprint
 
 
 
+# API CALLS CODE
+
+###########################################################################################################################
 
 
 @app.route('/salesLogin', methods=['POST'])
@@ -84,11 +90,6 @@ def getUserData():
 
 
 
-# Test Route for QR Code REMOVE LATER
-@app.route('/getCustomer/qrCode1', methods=['GET'])
-def getCustomer1():
-    return generateQR("test")
-
 
 
 @app.route('/getCustomer/signUp', methods=['POST'])
@@ -103,6 +104,11 @@ def signUp():
     else:
         # TODO: Return Sign Up Page
         return jsonify({"message": "Welcome to our app"})
+
+
+# WEB RENDER CODE
+
+###########################################################################################################################
 
 @app.route('/')
 def index():
