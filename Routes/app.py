@@ -22,6 +22,11 @@ Customer = db.Customer
 # Load Collection Sales Rep
 SalesRep = db.SalesRep
 
+# Load Collection Product
+product = db.Product
+
+
+
 
 @app.route("/")
 def hello():

@@ -13,3 +13,50 @@ data structure for login/signup
 
 
 ```
+
+Product Data structure
+
+```
+
+{
+    "_id":{
+        "$oid": "Value"
+    },
+    "name": "Value",
+    "CategoryID": "Value",
+    "Description": "Value",
+    "price":"Value"
+}
+
+```
+
+SalesRep Data structure
+
+```
+
+{
+    "_id":{
+        "$oid": "Value"
+    },
+    "name": "Value",
+    "permission": "Value",
+    "phone":"Value",
+    "email":"Value"
+}
+
+```
+DeviceFingerprinting Data structure
+
+```
+
+{
+    "_id":{
+        "$oid": "Value"
+    },
+    "deviceName": "Value",
+    "deviceOS": "Value",
+    "ipAddress":["Value"],
+    "geoLocation":["Value"],
+}
+
+```
