@@ -3,10 +3,10 @@
 data structure for login/signup
 ```
 {
-    id:'value',
-    name:'value',
-    email:'value,
-    phone:'value'
+    "id":"Value",
+    "name":"Value",
+    "email":"Value",
+    "phone":"Value"
 }
 
 ```
