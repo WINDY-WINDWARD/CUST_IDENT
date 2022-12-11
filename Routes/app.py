@@ -25,6 +25,9 @@ SalesRep = db.SalesRep
 # Load Collection Product
 product = db.Product
 
+# Load Collection DeviceFingerprint
+DeviceFingerprint = db.DeviceFingerprint
+
 
 
 
@@ -76,7 +79,8 @@ def getCustomer():
             return generateQR(rep_id)
 
 
-@app.route('/getCustomer/newdata', methods=['POST'])
+
+
 
 @app.route('/getCustomer/userdata', methods=['POST'])
 def getUserData():
