@@ -3,11 +3,11 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from bson.json_util import dumps
 from bson.json_util import loads
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from qrGen import generateQR
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='template', static_folder='static')
 
 # load db url from .env file
 db_url = os.environ.get('MONGO_LINK')
@@ -109,6 +109,9 @@ def signUp():
         # TODO: Return Sign Up Page
         return jsonify({"message": "Welcome to our app"})
 
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 if __name__ == "__main__":
     app.run(threaded=True, port=5000, debug=True)
