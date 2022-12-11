@@ -39,6 +39,38 @@ def signUp():
         return jsonify({"message": "Welcome to our app"})
 
 
+@app.route('/salesLogin', methods=['POST'])
+def salesLogin():
+    # get username and password from request
+    data = request.get_json()
+    # check if user exists
+    if Customer.find_one({"user": data['user'], "password": data['password']}):
+        # get user name from db
+        name = Customer.find_one({"user": data['user'], "password": data['password']})['name']
+        # get user id from db
+        id = Customer.find_one({"user": data['user'], "password": data['password']})['_id']
+        return jsonify({"message": "Welcome Back {}".format(name), "id": str(id)})
+    else:
+        return jsonify({"message": "Wrong Username or Password"})
+
+
+@app.route('/salesSignUp', methods=['POST'])
+def salesSignUp():
+    # get user phone number name from request
+    data = request.get_json()
+    # check if user already exists
+    if Customer.find_one({"phone": data['phone']}):
+        return jsonify({"message": "User Already Exists"})
+    else:
+        # TODO: Return Sign Up Page for sales rep
+        return jsonify({"message": "Welcome Sales Rep"})
+
+    
+@app.route('/getCustomer', methods=['POST'])
+def getCustomer():
+    pass
+
+
 
 if __name__ == "__main__":
     app.run(threaded=True, port=5000, debug=True)
