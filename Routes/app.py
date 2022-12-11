@@ -117,5 +117,10 @@ def contact():
 def about():
     return render_template('about.html')
 
+
+@app.route('/bangles')
+def bangles():
+    return render_template('bangles_catalogue.html')
+
 if __name__ == "__main__":
     app.run(threaded=True, port=5000, debug=True)
