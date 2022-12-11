@@ -3,10 +3,13 @@
 data structure for login/signup
 ```
 {
-    "id":"Value",
-    "name":"Value",
-    "email":"Value",
-    "phone":"Value"
+    "_id": {
+        "$oid": "63947f15532e542b12801213"
+    },
+    "name":"Karthik",
+    "email":"karthik@gmail.com",
+    "phone":"1234567891"
 }
+
 
 ```
