@@ -70,6 +70,15 @@ def getCustomer():
             rep_id = str(data['id'])
             return generateQR(rep_id)
 
+
+@app.route('/getCustomer/userdata', methods=['POST'])
+def getUserData():
+    # TODO: get user data from the session id of the user and return it to the Sales Rep
+    pass
+
+
+
+# Test Route for QR Code REMOVE LATER
 @app.route('/getCustomer/qrCode1', methods=['GET'])
 def getCustomer1():
     return generateQR("test")
@@ -85,7 +94,7 @@ def signUp():
         name = Customer.find_one({"phone": data['phone']})['name']
         return jsonify({"message": "Welcome Back {}".format(name)})
     else:
-        # TODO: Return Sigu Up Page
+        # TODO: Return Sign Up Page
         return jsonify({"message": "Welcome to our app"})
 
 
