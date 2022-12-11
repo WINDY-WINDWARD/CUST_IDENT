@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
-    <link rel="stylesheet" href="css/product_style.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/product_style.css')}}">
     <title>Gold Bangles</title>
 </head>
 <body>
@@ -16,8 +16,8 @@
         <header class="header_section">
             <div class="container-fluid">
               <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" href="index.html">
-                  <img src="images/Caratlane-logo-PNG.webp" alt="">
+                <a class="navbar-brand" href="{{url_for('static', filename='index.html')}}">
+                  <img src="{{url_for('static', filename='images/Caratlane-logo-PNG.webp')}}" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
@@ -27,16 +27,16 @@
                   <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
                     <ul class="navbar-nav  ">
                       <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{url_for('static', filename='index.html')}}">Home <span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="about.html"> About</a>
+                        <a class="nav-link" href="{{url_for('static', filename='about.html')}}"> About</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="jewellery.html">Jewellery </a>
+                        <a class="nav-link" href="{{url_for('static', filename='jewellery.html')}}">Jewellery </a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact us</a>
+                        <a class="nav-link" href="{{url_for('static', filename='contact.html')}}">Contact us</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#">Login</a>
@@ -46,7 +46,7 @@
                   </div>
                   <div class="quote_btn-container ">
                     <a href="">
-                      <img src="images/cart.png" alt="">
+                      <img src="{{url_for('static', filename='images/cart.png')}}" alt="">
                       <div class="cart_number">
                         0
                       </div>
@@ -69,7 +69,7 @@
                     </div>
                     <div class="row g-3">
                         <div class="col-md-4">
-                            <div class="card"> <img src="images/bangle-1.png" class="card-img-top">
+                            <div class="card"> <img src="{{url_for('static', filename='images/bangle-1.png')}}" class="card-img-top">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wood Sofa set-3</span> <span class="font-weight-bold">$550</span> </div>
                                     <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card"> <img src="images/bangle-2.png" class="card-img-top">
+                            <div class="card"> <img src="{{url_for('static', filename='images/bangle-2.png')}}" class="card-img-top">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wood Sofa set-3</span> <span class="font-weight-bold">$600</span> </div>
                                     <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -95,7 +95,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card"> <img src="images/bangle-3.jpg" class="card-img-top">
+                            <div class="card"> <img src="{{url_for('static', filename='images/bangle-3.jpg')}}" class="card-img-top">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wood Sofa set-2</span> <span class="font-weight-bold">$1,000</span> </div>
                                     <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -108,7 +108,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card"> <img src="images/bangle-4.jpg" class="card-img-top">
+                            <div class="card"> <img src="{{url_for('static', filename='images/bangle-4.jpg')}}" class="card-img-top">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wood Sofa set-4</span> <span class="font-weight-bold">$850</span> </div>
                                     <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -121,7 +121,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card"> <img src="images/bangle-1.png" class="card-img-top">
+                            <div class="card"> <img src="{{url_for('static', filename='images/bangle-1.png')}}" class="card-img-top">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wood Sofa set-5</span> <span class="font-weight-bold">$15,50</span> </div>
                                     <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -134,7 +134,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card"> <img src="images/bangle-2.png" class="card-img-top">
+                            <div class="card"> <img src="{{url_for('static', filename='images/bangle-2.png')}}" class="card-img-top">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wood Sofa set-3</span> <span class="font-weight-bold">$550</span> </div>
                                     <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
