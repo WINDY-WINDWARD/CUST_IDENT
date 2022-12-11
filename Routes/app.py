@@ -31,11 +31,6 @@ DeviceFingerprint = db.DeviceFingerprint
 
 
 
-@app.route("/")
-def hello():
-    return "Hello World!"
-
-
 
 
 
@@ -112,6 +107,11 @@ def signUp():
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
 
 @app.route('/about')
 def about():
