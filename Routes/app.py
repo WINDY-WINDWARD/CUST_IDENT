@@ -122,5 +122,9 @@ def about():
 def bangles():
     return render_template('bangles_catalogue.html')
 
+@app.route('/jewellery')
+def bangles():
+    return render_template('jewellery.html')
+
 if __name__ == "__main__":
     app.run(threaded=True, port=5000, debug=True)
