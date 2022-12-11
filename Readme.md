@@ -1,14 +1,15 @@
 <h1> Hello World </h1>
 
-data structure for login/signup
+data structure for Customer login/signup
 ```
 {
     "_id": {
-        "$oid": "63947f15532e542b12801213"
+        "$oid": "Value"
     },
-    "name":"Karthik",
-    "email":"karthik@gmail.com",
-    "phone":"1234567891"
+    "name":"Value",
+    "email":"Value",
+    "phone":"Value",
+    "address": "Value"
 }
 
 
@@ -57,6 +58,20 @@ DeviceFingerprinting Data structure
     "deviceOS": "Value",
     "ipAddress":["Value"],
     "geoLocation":["Value"],
+}
+
+```
+DataStream data structure
+
+```
+
+{
+    "_id":{
+        "$oid": "Value"
+    },
+    "deviceID": "Value",
+    "data": {"value":"Value"},
+    "timestamp":"Value"
 }
 
 ```
