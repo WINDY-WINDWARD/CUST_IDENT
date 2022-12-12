@@ -92,6 +92,11 @@ def getUserData():
     pass
 
 
+@app.route('/getCustomer/setAnon', methods=['POST'])
+def setAnon():
+    data = request.get_json()
+    
+
 
 
 # CUSTOMER MANAGEMENT CODE

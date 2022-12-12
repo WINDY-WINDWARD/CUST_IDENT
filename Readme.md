@@ -41,9 +41,7 @@ SalesRep Data structure
 ```
 
 {
-    "_id":{
-        "$oid": "Value"
-    },
+    "_id": "Value",
     "name": "Value",
     "permission": "Value",
     "phone":"Value",
@@ -56,13 +54,11 @@ DeviceFingerprinting Data structure
 ```
 
 {
-    "_id":{
-        "$oid": "Value"
-    },
+    "_id": "Value",
     "deviceName": "Value",
     "deviceOS": "Value",
-    "ipAddress":["Value"],
-    "geoLocation":["Value"],
+    "ipAddress":"Value",
+    "geoLocation":"Value",
 }
 
 ```
@@ -71,9 +67,7 @@ DataStream data structure
 ```
 
 {
-    "_id":{
-        "$oid": "Value"
-    },
+    "_id":"Value"
     "deviceID": "Value",
     "data": {"value":"Value"},
     "timestamp":"Value"
