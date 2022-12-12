@@ -34,12 +34,21 @@ product = db.Product
 DeviceFingerprint = db.DeviceFingerprint
 
 
-
+# Session Config
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SECRET_KEY'] = 'super'
 
 
 # API CALLS CODE
 
 ###########################################################################################################################
+
+@app.route('/logout')
+def logout():
+    session.pop('id', None)
+    session.pop('name', None)
+    session.clear()
+    return redirect(url_for('index'))
 
 
 # SALES MANAGEMENT CODE
@@ -53,7 +62,9 @@ def salesLoginAPI():
         data = SalesRep.find_one({"phone": phone, "password": password})
         name = data['name']
         id = data['_id']
-        return render_template("message.html", message="Welcome Back " + name+" "+str(id))
+        session['id'] = str(id)
+        session['name'] = name
+        return redirect(url_for('salesHome'))
     else:
         return redirect(location=url_for('salesLogin', message="Wrong Username or Password"))
 
@@ -72,15 +83,10 @@ def salesSignUp():
     
 @app.route('/getCustomer/qrCode', methods=['GET'])
 def customerQR():
-    # get sales rep id from request
-    data = request.get_json()
-    # check if sales rep exists
-    if SalesRep.find_one({"_id": ObjectId(data['id'])}): 
-        # check perminssion
-        if SalesRep.find_one({"_id": ObjectId(data['id'])})['permission'] == "True":
-            # generate QR code
-            rep_id = str(data['id'])
-            return generateQR(rep_id)
+    if(session.get('id') is not None):
+        # generate QR code
+        rep_id = session.get('id')
+        return generateQR(rep_id)
 
 
 
@@ -221,6 +227,17 @@ def salesLogin():
         message = request.args.get('message')
         return render_template('salesLogin.html', message=message)
     return render_template('salesLogin.html')
+
+
+@app.route('/sales/home', methods=['GET','POST'])
+def salesHome():
+    if(session.get('id') is not None):
+        # get sales rep info from db
+        data = SalesRep.find_one({"_id": session.get('id')})
+
+        return render_template("salesHome.html", SalesRep=data)
+    else:
+        return redirect(url_for('salesLogin'))
 
 
 if __name__ == "__main__":
