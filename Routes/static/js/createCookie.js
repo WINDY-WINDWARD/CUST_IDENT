@@ -1,5 +1,5 @@
 let cookieName = "userFingerPrint";
-function setCookie(visitorID){
+function setCookie(visitorID,User_IP,v_Location,v_OS,v_Browser,v_incognito){
     const d = new Date();
     d.setTime(d.getTime()+(365*24*60*60*1000));
     let expires = "expires="+d.toUTCString();
@@ -7,7 +7,15 @@ function setCookie(visitorID){
     $.ajax({
       url: '/testAPI',
       type: "POST",
-      data: JSON.stringify({"_id": visitorID}),
+      data: JSON.stringify(
+        {"_id": visitorID,
+         "ipaddress": User_IP,
+         "geoLocation": v_Location,
+         "os":v_OS,
+         "Browser":v_Browser,
+         "Incognito": v_incognito
+        }
+        ),
       dataType: "json",
       contentType: "application/json",
       });  
