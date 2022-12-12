@@ -4,6 +4,7 @@ from bson.objectid import ObjectId
 from bson.json_util import dumps
 from bson.json_util import loads
 from flask import Flask, request, jsonify, render_template, redirect, url_for, session
+from flask_socketio import SocketIO, emit, join_room, leave_room
 from flask_session import Session
 from qrGen import generateQR
 from dotenv import load_dotenv
@@ -30,6 +31,8 @@ SalesRep = db.SalesRep
 # Load Collection Product
 product = db.Product
 
+stitch = db.Stitch
+
 # Load Collection DeviceFingerprint
 DeviceFingerprint = db.DeviceFingerprint
 
@@ -37,6 +40,10 @@ DeviceFingerprint = db.DeviceFingerprint
 # Session Config
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SECRET_KEY'] = 'super'
+Session(app)
+
+# SocketIO Config
+socketio = SocketIO(app, manage_session=False, cors_allowed_origins="*")
 
 
 # API CALLS CODE
@@ -124,25 +131,34 @@ def testAPI():
 # CUSTOMER MANAGEMENT CODE
 
 
-@app.route('/getCustomer', methods=['POST'])
+@app.route('/getCustomer', methods=['GET', 'POST'])
 def getCustomer():
-    # get phone number from the form
-    data = str(request.form["phone"])
-    # check if user already exists
-    if Customer.find_one({"phone": data}):
-        # get user name from db
-        # name = Customer.find_one({"phone": data['phone']})['name']
-        return redirect(url_for('login'))
-    else:
-        # TODO: Return Sign Up Page
-        return redirect(url_for('registrationRender', phone=data))
+    if request.method == 'POST':
+        # get phone number from the form
+        data = str(request.form["phone"])
+        # salesRepId = str(request.args.get('key'))
+        # check if user already exists
+        if Customer.find_one({"phone": data}):
+            # get user name from db
+            # name = Customer.find_one({"phone": data['phone']})['name']
+            return redirect(url_for('login'))
+        else:
+            # TODO: Return Sign Up Page
+            return redirect(url_for('registrationRender', phone=data))
+    elif(request.method == 'GET'):
+        room = request.args.get('key')
+        session['room'] = room
+        
+        return redirect(url_for('index'))
 
 
 
-@app.route('/getCustomer/signUp', methods=['POST'])
+
+@app.route('/getCustomer/signUp', methods=['GET', 'POST'])
 def signUp():
     # get phone, email, address, name, password from the form
     data = request.form
+    deviceID = request.cookie.get('userFingerPrint')
     # generate random id
     id = idGen()
     # check if ID used
@@ -156,6 +172,8 @@ def signUp():
                         "address": data['address'], 
                         "name": data['name'], 
                         "password": data['password']})
+    stitch.insert_one({"customerID": id, 
+                        "deviceID": deviceID})
     return redirect(url_for('login'))
 
 
@@ -239,6 +257,28 @@ def salesHome():
     else:
         return redirect(url_for('salesLogin'))
 
+# SOCKETIO CODE
+
+###########################################################################################################################
+
+@socketio.on('join', namespace='/sales')
+def join(message):
+    room = session.get('id')
+    join_room(room)
+    emit('status', {'msg': session.get('id')}, room=room)
+
+@socketio.on('text', namespace='/sales')
+def text(message):
+    room = session.get('id')
+    emit('message', {'msg': message['msg']}, room=room)
+
+@socketio.on('left', namespace='/sales')
+def left(message):
+    room = session.get('id')
+    useername = session.get('deviceId')
+    leave_room(room)
+    emit('status', {'msg': session.get('id')}, room=room)
 
 if __name__ == "__main__":
-    app.run(threaded=True, port=5000, debug=True,host="0.0.0.0")
+    # socketio.run(app, threaded=True, port=5000, debug=True,host="0.0.0.0")
+    socketio.run(app, debug=True, host="0.0.0.0", port=5000)

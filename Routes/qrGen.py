@@ -9,7 +9,7 @@ def generateQR(s):
     # get web_page from .env 
     a = os.environ.get('WEB_PAGE')
     print(a)
-    a = a+"getCustomer/signUp?key="+s
+    a = a+"getCustomer?key="+s
     # Generate QR code
     url = pyqrcode.create(a)
     buffer = io.BytesIO()
