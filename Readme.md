@@ -74,3 +74,20 @@ DataStream data structure
 }
 
 ```
+Complete User Information When cookie created (setAnon)
+```
+{'_id': 'DJTDwJeVDi4N3y34yloc', 
+ 'ipaddress': '27.7.135.55', 
+ 'geoLocation': 'Mysore', 
+ 'os': {
+    'os': 'Windows', 
+    'osVersion': '10'
+    }, 
+ 'Browser': {
+    'browser': 'Chrome', 
+    'browserVersion': '108.0.0'
+    }, 
+ 'Incognito': False
+ }
+
+```
