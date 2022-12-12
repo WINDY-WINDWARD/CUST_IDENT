@@ -3,7 +3,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from bson.json_util import dumps
 from bson.json_util import loads
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, redirect, url_for
 from qrGen import generateQR
 from dotenv import load_dotenv
 import os
@@ -105,7 +105,7 @@ def signUp():
         return render_template("message.html", message="Welcome Back {}".format(data))
     else:
         # TODO: Return Sign Up Page
-        return render_template("message.html", message="Sign up {}".format(data))
+        return redirect(url_for('registrationRender', phone=data))
 
 
 # WEB RENDER CODE
@@ -138,6 +138,11 @@ def jewellery():
 @app.route('/login',methods=['GET'])
 def loginRender():
     return render_template('login.html')
+
+@app.route('/registration',methods=['GET'])
+def registrationRender():
+    data = request.args.get('phone')
+    return render_template('registration.html', phone=data)
 
 
 if __name__ == "__main__":
