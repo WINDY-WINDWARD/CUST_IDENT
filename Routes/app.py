@@ -137,14 +137,11 @@ def signUp():
 @app.route('/getCustomer/loginApi', methods=['POST'])
 def loginApi():
     # get phone and password from the form
-    data = request.form
-    # check if user exists
-    print(data['phone'])
-    print(data['password'])
-    print(Customer.find_one({"phone:": data['phone'], "password": data['password']}))
-    if Customer.find_one({"phone:": str(data['phone']), "password": str(data['password'])}):
-        # get user name and id from db
-        data = Customer.find_one({"phone:": str(data['phone']), "password": str(data['password'])})
+    phone = request.form["phone"]
+    password = request.form["password"]
+    if Customer.find_one({"phone": phone, "password": password}):
+        # get user name from db
+        data = Customer.find_one({"phone": phone, "password": password})
         name = data['name']
         id = data['_id']
         return render_template("message.html", message="Welcome Back " + name+" "+str(id))
