@@ -7,7 +7,7 @@ function setCookie(visitorID){
     jQuery.ajax({
       url: '/testAPI',
       type: "POST",
-      data: {_id: visitorID },
+      data: "{_id: visitorID }",
       dataType: "json",
       beforeSend: function(x) {
         if (x && x.overrideMimeType) {
