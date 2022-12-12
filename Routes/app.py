@@ -3,7 +3,8 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from bson.json_util import dumps
 from bson.json_util import loads
-from flask import Flask, request, jsonify, render_template, redirect, url_for
+from flask import Flask, request, jsonify, render_template, redirect, url_for, session
+from flask_session import Session
 from qrGen import generateQR
 from dotenv import load_dotenv
 from idGen import idGen
@@ -43,19 +44,18 @@ DeviceFingerprint = db.DeviceFingerprint
 
 # SALES MANAGEMENT CODE
 
-@app.route('/sales/login', methods=['POST'])
-def salesLogin():
-    # get username and password from request
-    data = request.get_json()
-    # check if user exists
-    if SalesRep.find_one({"user": data['user'], "password": data['password']}):
+@app.route('/sales/loginAPI', methods=['POST'])
+def salesLoginAPI():
+    phone = request.form["phone"]
+    password = request.form["password"]
+    if SalesRep.find_one({"phone": phone, "password": password}):
         # get user name from db
-        name = SalesRep.find_one({"user": data['user'], "password": data['password']})['name']
-        # get user id from db
-        id = SalesRep.find_one({"user": data['user'], "password": data['password']})['_id']
-        return jsonify({"message": "Welcome Back {}".format(name), "id": str(id)})
+        data = SalesRep.find_one({"phone": phone, "password": password})
+        name = data['name']
+        id = data['_id']
+        return render_template("message.html", message="Welcome Back " + name+" "+str(id))
     else:
-        return jsonify({"message": "Wrong Username or Password"})
+        return redirect(location=url_for('salesLogin', message="Wrong Username or Password"))
 
 
 @app.route('/sales/signUp', methods=['POST'])
@@ -214,6 +214,13 @@ def login():
 def registrationRender():
     data = request.args.get('phone')
     return render_template('registration.html', phone=data)
+
+@app.route('/sales/login',methods=['GET'])
+def salesLogin():
+    if request.args.get('message'):
+        message = request.args.get('message')
+        return render_template('salesLogin.html', message=message)
+    return render_template('salesLogin.html')
 
 
 if __name__ == "__main__":

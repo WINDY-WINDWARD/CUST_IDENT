@@ -2,7 +2,12 @@
 
 <h2> TO-DO: </h2>
 
-make login.html, registration.html beautiful
+make login.html, registration.html, logcheck.html, salesLogin, salesDashboard beautiful
+
+add session and integrate socket io for QR generation and dashboard redirect for sales rep
+
+
+
 
 
 data structure for Customer login/signup
