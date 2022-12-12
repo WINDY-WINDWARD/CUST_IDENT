@@ -41,7 +41,9 @@ DeviceFingerprint = db.DeviceFingerprint
 ###########################################################################################################################
 
 
-@app.route('/salesLogin', methods=['POST'])
+# SALES MANAGEMENT CODE
+
+@app.route('/sales/login', methods=['POST'])
 def salesLogin():
     # get username and password from request
     data = request.get_json()
@@ -56,7 +58,7 @@ def salesLogin():
         return jsonify({"message": "Wrong Username or Password"})
 
 
-@app.route('/salesSignUp', methods=['POST'])
+@app.route('/sales/signUp', methods=['POST'])
 def salesSignUp():
     # get user phone number name from request
     data = request.get_json()
@@ -92,6 +94,8 @@ def getUserData():
 
 
 
+# CUSTOMER MANAGEMENT CODE
+
 
 @app.route('/getCustomer', methods=['POST'])
 def getCustomer():
@@ -101,7 +105,7 @@ def getCustomer():
     if Customer.find_one({"phone": data}):
         # get user name from db
         # name = Customer.find_one({"phone": data['phone']})['name']
-        return render_template("message.html", message="Welcome Back {}".format(data))
+        return redirect(url_for('login'))
     else:
         # TODO: Return Sign Up Page
         return redirect(url_for('registrationRender', phone=data))
@@ -125,7 +129,27 @@ def signUp():
                         "address": data['address'], 
                         "name": data['name'], 
                         "password": data['password']})
-    return render_template("message.html", message="Welcome {}".format(data['name']))
+    return redirect(url_for('login'))
+
+
+# customer Login
+
+@app.route('/getCustomer/loginApi', methods=['POST'])
+def loginApi():
+    # get phone and password from the form
+    data = request.form
+    # check if user exists
+    print(data['phone'])
+    print(data['password'])
+    print(Customer.find_one({"phone:": data['phone'], "password": data['password']}))
+    if Customer.find_one({"phone:": str(data['phone']), "password": str(data['password'])}):
+        # get user name and id from db
+        data = Customer.find_one({"phone:": str(data['phone']), "password": str(data['password'])})
+        name = data['name']
+        id = data['_id']
+        return render_template("message.html", message="Welcome Back " + name+" "+str(id))
+    else:
+        return redirect(location=url_for('login', message="Wrong Username or Password"))
 
 
 # WEB RENDER CODE
@@ -155,8 +179,17 @@ def jewellery():
     return render_template('jewellery.html')
 
 # THis only renders the page the login handler written in api calls code handles the request
+# this checks the phone number and returns the login page if already registered
+# else returns the registration page
 @app.route('/login',methods=['GET'])
-def loginRender():
+def logCheck():
+    return render_template('logCheck.html')
+
+@app.route('/getCustomer/login',methods=['GET'])
+def login():
+    if request.args.get('message'):
+        message = request.args.get('message')
+        return render_template('login.html', message=message)
     return render_template('login.html')
 
 @app.route('/registration',methods=['GET'])
