@@ -54,7 +54,7 @@ DeviceFingerprinting Data structure
     "deviceName": "Value",
     "deviceOS": "Value",
     "ipAddress":"Value",
-    "geoLocation":"Value",
+    "geoLocation":"Value"
 }
 
 ```
@@ -63,8 +63,7 @@ DataStream data structure
 ```
 
 {
-    "_id":"Value"
-    "deviceID": "Value",
+    "_id":"Value",
     "data": {"value":"Value"},
     "timestamp":"Value"
 }

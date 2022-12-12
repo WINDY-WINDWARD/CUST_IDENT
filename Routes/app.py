@@ -95,11 +95,12 @@ def getUserData():
 @app.route('/getCustomer/setAnon', methods=['POST'])
 def setAnon():
     data = request.get_json()
+    # print(data)
     # check if user already exists
-    if DeviceFingerprint.find_one({"_id": data['id']}):
+    if DeviceFingerprint.find_one({"_id": data['_id']}):
         return jsonify({"message": "User Already Exists"})
 
-    DeviceFingerprint.insert_one({"_id": data['id'], 
+    DeviceFingerprint.insert_one({"_id": data['_id'], 
                         "deviceName": data['deviceName'], 
                         "deviceOS": data['deviceOS'], 
                         "ipAddress": data['ipAddress'], 
