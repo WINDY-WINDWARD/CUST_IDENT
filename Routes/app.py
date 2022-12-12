@@ -12,6 +12,8 @@ app = Flask(__name__, template_folder='template', static_folder='static')
 
 load_dotenv()
 
+# DATABASE CONNECTION CODE
+
 # load db url from .env file
 db_url = os.environ.get('MONGO_LINK')
 
@@ -94,16 +96,16 @@ def getUserData():
 
 @app.route('/getCustomer/signUp', methods=['POST'])
 def signUp():
-    # get user phone number name from request
-    data = request.get_json()
+    # get phone number from the form
+    data = str(request.form["phone"])
     # check if user already exists
-    if Customer.find_one({"phone": data['phone']}):
+    if Customer.find_one({"phone": data}):
         # get user name from db
-        name = Customer.find_one({"phone": data['phone']})['name']
-        return jsonify({"message": "Welcome Back {}".format(name)})
+        # name = Customer.find_one({"phone": data['phone']})['name']
+        return render_template("message.html", message="Welcome Back {}".format(data))
     else:
         # TODO: Return Sign Up Page
-        return jsonify({"message": "Welcome to our app"})
+        return render_template("message.html", message="Sign up {}".format(data))
 
 
 # WEB RENDER CODE
@@ -131,6 +133,12 @@ def bangles():
 @app.route('/jewellery')
 def jewellery():
     return render_template('jewellery.html')
+
+# THis only renders the page the login handler written in api calls code handles the request
+@app.route('/login',methods=['GET'])
+def loginRender():
+    return render_template('login.html')
+
 
 if __name__ == "__main__":
     app.run(threaded=True, port=5000, debug=True,host="0.0.0.0")
