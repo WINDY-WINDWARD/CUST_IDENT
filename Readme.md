@@ -1,5 +1,10 @@
 <h1> Hello World </h1>
 
+<h2> TO-DO: </h2>
+
+make login.html, registration.html beautiful
+
+
 data structure for Customer login/signup
 ```
 {
