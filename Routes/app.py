@@ -111,7 +111,8 @@ def setAnon():
 @app.route('/testAPI', methods=['GET', 'POST'])
 def testAPI():
     data = str(request.get_json())
-    return render_template("message.html", message=data)
+    print(data)
+    return jsonify({"message": "Success"})
 
 
 # CUSTOMER MANAGEMENT CODE
