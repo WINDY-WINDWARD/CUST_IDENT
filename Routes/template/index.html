@@ -27,8 +27,8 @@
   <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet" />
   <!-- responsive style -->
   <link href="{{url_for('static', filename='css/responsive.css')}}" rel="stylesheet" />
-  <!-- <script type="text/javascript" src="./js/fingerprint.js"></script> -->
-  <script type="text/javascript" src="./js/createCookie.js"></script>
+  <script type="text/javascript" src="{{url_for('static', filename='js/fingerprint.js')}}"></script>
+  <script type="text/javascript" src="{{url_for('static', filename='js/createCookie.js')}}"></script>
 </head>
 
 <body>
@@ -534,7 +534,7 @@
             </div>
           </form>
         </div>
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
           <div class="map_container">
             <div class="map-responsive">
               <iframe
@@ -543,7 +543,7 @@
                 allowfullscreen></iframe>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
@@ -649,15 +649,15 @@
 
   <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.4.1.min.js')}}"></script>
   <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
-  <script type="text/javascript" src="{{url_for('static', filename='js/custom.js')}}"></script>
+  <!-- <script type="text/javascript" src="{{url_for('static', filename='js/custom.js')}}"></script> -->
   <script type="text/javascript" src="{{url_for('static', filename='js/operation.js')}}"></script>
-  <script>
+  <script type="text/javascript">
     function setDeviceFingerprintCookie(id){
       // console.log(id)
       setCookie(id)
     }
-    if (checkCookie()) {
-      // console.log("Cookie Exists");
+    if (checkCookie("userFingerPrint")==true) {
+      console.log("Cookie Exists");
     }
     else {
       let v_ID;
@@ -671,7 +671,7 @@
               setDeviceFingerprintCookie(visitorId)
           })
       }
-      getVisitorID();
+      getVisitorID()
     }
   </script>
 </body>

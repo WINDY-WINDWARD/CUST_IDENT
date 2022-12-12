@@ -4,6 +4,15 @@ function setCookie(visitorID){
     d.setTime(d.getTime()+(365*24*60*60*1000));
     let expires = "expires="+d.toUTCString();
     document.cookie = `${cookieName} = ${visitorID} ; ${expires}`;
+    console.log("Cookie Created");
+}
+function checkCookie(name){
+  if(getCookie(name).length()<=0){
+    return false;
+  }
+  else{
+    return true;
+  }
 }
 function getCookie(cookieName) {
     let name = cookieName + "=";
@@ -20,7 +29,7 @@ function getCookie(cookieName) {
     return "";
   }
 function checkCookie() {
-    var user = getCookie("name");
+    var user = getCookie(cookieName);
     // checking whether user is null or not
     if (user != "") {
       return true;

@@ -12,23 +12,23 @@ app = Flask(__name__, template_folder='template', static_folder='static')
 
 load_dotenv()
 
-# load db url from .env file
+load db url from .env file
 db_url = os.environ.get('MONGO_LINK')
 
-# connect to mongodb Customer_Identifier database
+connect to mongodb Customer_Identifier database
 client = MongoClient(db_url)
 db = client.Customer_Identifier
 
-# Load Collection Customer
+Load Collection Customer
 Customer = db.Customer
 
-# Load Collection Sales Rep
+Load Collection Sales Rep
 SalesRep = db.SalesRep
 
-# Load Collection Product
+Load Collection Product
 product = db.Product
 
-# Load Collection DeviceFingerprint
+Load Collection DeviceFingerprint
 DeviceFingerprint = db.DeviceFingerprint
 
 
