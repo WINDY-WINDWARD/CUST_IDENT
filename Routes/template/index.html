@@ -38,7 +38,7 @@
     <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="{{url_for('static', filename='index.html')}}">
+          <a class="navbar-brand" href="{{url_for('index')}}">
             <img src="{{url_for('static', filename='images/Caratlane-logo-PNG.webp')}}" alt="">
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -50,17 +50,17 @@
             <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
               <ul class="navbar-nav  ">
                 <li class="nav-item active">
-                  <a class="nav-link" href="{{url_for('static', filename='index.html')}}">Home <span
+                  <a class="nav-link" href="{{url_for('index')}}">Home <span
                       class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{url_for('static', filename='about.html')}}"> About</a>
+                  <a class="nav-link" href="{{url_for('about')}}"> About</a>
                 </li>
                 <!-- <li class="nav-item">
                   <a class="nav-link" href="jewellery.html">Jewellery </a>
                 </li> -->
                 <li class="nav-item">
-                  <a class="nav-link" href="{{url_for('static', filename='contact.html')}}">Contact us</a>
+                  <a class="nav-link" href="{{url_for('contact')}}">Contact us</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/login">Login</a>
@@ -323,7 +323,7 @@
             <img src="{{url_for('static', filename='images/i-1.png')}}" alt="">
           </div>
           <div class="detail-box">
-            <a href="{{url_for('static', filename='./bangles_catalogue.html')}}">
+            <a href="{{url_for('bangles')}}">
               Browse
             </a>
           </div>
@@ -338,7 +338,7 @@
             <img src="{{url_for('static', filename='images/i-2.png')}}" alt="">
           </div>
           <div class="detail-box">
-            <a href="{{url_for('static', filename='./bangles_catalogue.html')}}">
+            <a href="{{url_for('bangles')}}">
               Browse
             </a>
           </div>
@@ -353,7 +353,7 @@
             <img src="{{url_for('static', filename='images/i-3.png')}}" alt="">
           </div>
           <div class="detail-box">
-            <a href="{{url_for('static', filename='./bangles_catalogue.html')}}">
+            <a href="{{url_for('bangles')}}">
               Browse
             </a>
           </div>
@@ -642,7 +642,7 @@
   <section class="container-fluid footer_section">
     <p>
       &copy; <span id="displayYear"></span> All Rights Reserved By
-      <a href="https://html.design/">Free Html Templates</a>
+      <a href="#">CodeMafia</a>
     </p>
   </section>
   <!-- footer section -->

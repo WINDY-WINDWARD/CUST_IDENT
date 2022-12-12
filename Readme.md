@@ -8,9 +8,7 @@ make login.html, registration.html beautiful
 data structure for Customer login/signup
 ```
 {
-    "_id": {
-        "$oid": "Value"
-    },
+    "_id":"Value",
     "name":"Value",
     "email":"Value",
     "phone":"Value",
@@ -25,9 +23,7 @@ Product Data structure
 ```
 
 {
-    "_id":{
-        "$oid": "Value"
-    },
+    "_id": "Value",
     "name": "Value",
     "CategoryID": "Value",
     "Description": "Value",

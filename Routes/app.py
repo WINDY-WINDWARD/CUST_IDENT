@@ -95,7 +95,7 @@ def getUserData():
 @app.route('/getCustomer/setAnon', methods=['POST'])
 def setAnon():
     data = request.get_json()
-    
+
 
 
 
