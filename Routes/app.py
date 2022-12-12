@@ -6,6 +6,7 @@ from bson.json_util import loads
 from flask import Flask, request, jsonify, render_template, redirect, url_for
 from qrGen import generateQR
 from dotenv import load_dotenv
+from idGen import idGen
 import os
 
 app = Flask(__name__, template_folder='template', static_folder='static')
@@ -70,7 +71,7 @@ def salesSignUp():
 
     
 @app.route('/getCustomer/qrCode', methods=['GET'])
-def getCustomer():
+def customerQR():
     # get sales rep id from request
     data = request.get_json()
     # check if sales rep exists
@@ -94,8 +95,8 @@ def getUserData():
 
 
 
-@app.route('/getCustomer/signUp', methods=['POST'])
-def signUp():
+@app.route('/getCustomer', methods=['POST'])
+def getCustomer():
     # get phone number from the form
     data = str(request.form["phone"])
     # check if user already exists
@@ -106,6 +107,27 @@ def signUp():
     else:
         # TODO: Return Sign Up Page
         return redirect(url_for('registrationRender', phone=data))
+
+
+
+@app.route('/getCustomer/signUp', methods=['POST'])
+def signUp():
+    # get phone, email, address, name, password from the form
+    data = request.form
+    # generate random id
+    id = idGen()
+    # check if ID used
+    while not(Customer.find({"_id": id})):
+        id = idGen()
+    
+    # add user to db
+    Customer.insert_one({"_id": id, 
+                        "phone": data['phone'], 
+                        "email": data['email'], 
+                        "address": data['address'], 
+                        "name": data['name'], 
+                        "password": data['password']})
+    return render_template("message.html", message="Welcome {}".format(data['name']))
 
 
 # WEB RENDER CODE
