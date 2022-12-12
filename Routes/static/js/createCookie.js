@@ -4,18 +4,13 @@ function setCookie(visitorID){
     d.setTime(d.getTime()+(365*24*60*60*1000));
     let expires = "expires="+d.toUTCString();
     document.cookie = `${cookieName} = ${visitorID} ; ${expires}`;
-    jQuery.ajax({
+    $.ajax({
       url: '/testAPI',
       type: "POST",
-      data: "{_id: visitorID }",
+      data: JSON.stringify({"_id": visitorID}),
       dataType: "json",
-      beforeSend: function(x) {
-        if (x && x.overrideMimeType) {
-          x.overrideMimeType("application/j-son;charset=UTF-8");
-        }
-      },
-      success: function(result) {
-      }});  
+      contentType: "application/json",
+      });  
     console.log("Cookie Created");
 }
 function checkCookie(name){
