@@ -10,10 +10,16 @@ from qrGen import generateQR
 from dotenv import load_dotenv
 from idGen import idGen
 import os
+from customerDataIP import getCustomersIP
+import logging
 
 app = Flask(__name__, template_folder='template', static_folder='static')
 
 load_dotenv()
+
+#remove later
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 # load db url from .env file
 db_url = os.environ.get('MONGO_LINK')
@@ -153,8 +159,10 @@ def getCustomer():
     elif(request.method == 'GET'):
         room = request.args.get('key')
         session['room'] = room
-        
-        return redirect(url_for('index'))
+        session['deviceID'] = request.cookies.get('userFingerPrint')
+        deviceID = session['deviceID']
+        # print(deviceID)
+        return render_template('customerLogin.html', session=session, deviceID=deviceID)
 
 
 
@@ -171,6 +179,8 @@ def signUp():
         id = idGen()
     
     # add user to db
+    if Customer.find_one({"phone": data['phone']}):
+        return redirect(url_for('login'))
     Customer.insert_one({"_id": id, 
                         "phone": data['phone'], 
                         "email": data['email'], 
@@ -203,18 +213,44 @@ def loginApi():
 def salesDash():
     # TODO: USING COOKIE MODIFY TO WORK WITH SESSION AND SALES REP ID + COOKIE
 
-    if request.cookies.get('userFingerPrint') is not None:
-        id = request.cookies.get('userFingerPrint')
+    # if request.cookies.get('userFingerPrint') is not None:
+    #     id = request.cookies.get('userFingerPrint')
+    #     if DataStream.find_one({"Did": id}):
+    #         data = DataStream.find({"Did": id})
+    #         print(data)
+    #     if stitch.find_one({"deviceID": id}):
+    #         customerID = stitch.find_one({"deviceID": id})['customerID']
+    #         customerData = Customer.find_one({"_id": customerID})
+    #         # print(customerData)
+    #         return render_template("salesDashboard.html", data=data, customerData=customerData)
+    #     else:
+    #         return render_template("salesDashboard.html", data=data)
+    if session.get('id') is not None:
+        id = request.args.get('user')
+        # print(id)
+        if id is None:
+            ip = request.session['ip']
+            data = getCustomersIP(ip,DeviceFingerprint)
+
+        data = None
         if DataStream.find_one({"Did": id}):
             data = DataStream.find({"Did": id})
             print(data)
-        if stitch.find_one({"deviceID": id}):
-            customerID = stitch.find_one({"deviceID": id})['customerID']
-            customerData = Customer.find_one({"_id": customerID})
-            # print(customerData)
-            return render_template("salesDashboard.html", data=data, customerData=customerData)
-        else:
-            return render_template("salesDashboard.html", data=data)
+            if stitch.find_one({"deviceID": id}):
+                customerID = stitch.find_one({"deviceID": id})['customerID']
+                # print(customerID)
+                customerData = Customer.find_one({"_id": customerID})
+                # print(customerData)
+                return render_template("salesDashboard.html", data=data, customerData=customerData)
+                # return render_template("salesDashboard.html", data=data, customerData=None)
+            else:
+                return render_template("salesDashboard.html", data=data,customerData=None)
+        return render_template("salesDashboard.html", data=data,customerData=None)
+        
+    else:
+        return redirect(url_for('login'))
+
+
 
 # WEB RENDER CODE
 
@@ -277,8 +313,9 @@ def salesHome():
     if(session.get('id') is not None):
         # get sales rep info from db
         data = SalesRep.find_one({"_id": session.get('id')})
-
-        return render_template("salesHome.html", SalesRep=data)
+        session['room'] = session.get('id')
+        session['deviceId'] = request.cookies.get('userFingerPrint')
+        return render_template("salesHome.html", SalesRep=data, session=session)
     else:
         return redirect(url_for('salesLogin'))
 
@@ -288,18 +325,18 @@ def salesHome():
 
 @socketio.on('join', namespace='/sales')
 def join(message):
-    room = session.get('id')
+    room = session.get('room')
     join_room(room)
-    emit('status', {'msg': session.get('id')}, room=room)
+    emit('status', {'msg': session.get('deviceId')}, room=room)
 
 @socketio.on('text', namespace='/sales')
 def text(message):
-    room = session.get('id')
+    room = session.get('room')
     emit('message', {'msg': message['msg']}, room=room)
 
 @socketio.on('left', namespace='/sales')
 def left(message):
-    room = session.get('id')
+    room = session.get('room')
     useername = session.get('deviceId')
     leave_room(room)
     emit('status', {'msg': session.get('id')}, room=room)

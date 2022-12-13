@@ -9,7 +9,7 @@ def generateQR(s):
     # get web_page from .env 
     # a = os.environ.get('WEB_PAGE')
     # print(a)
-    a="http://127.0.0.1:5000/"
+    a="https://4b36-115-99-144-124.in.ngrok.io/"
     a = a+"getCustomer?key="+s
     # Generate QR code
     url = pyqrcode.create(a)

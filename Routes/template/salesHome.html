@@ -15,7 +15,8 @@
                 socket.emit('join', {});
             });
             socket.on('status', function(data) {
-                if(data.msg!="{{session['id']}}"){
+                console.log(data.msg+" ,{{session['deviceId']}}");
+                if(data.msg!="{{session['deviceId']}}"){
                     $("qrScreen").hide();
                 }
             });
@@ -27,8 +28,8 @@
         function leave_room(id) {
             socket.emit('left', {}, function() {
                 socket.disconnect();
-                url = "{{url_for('salesDashboard')}}?user="+id;
-                window.location.href = url;
+                rURL = "{{url_for('salesDash')}}?user="+id;
+                window.location.href = rURL;
             });
         }
     </script>

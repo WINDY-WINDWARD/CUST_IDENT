@@ -1,0 +1,86 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ 
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+     <title>Caratlane A Tanishq Partnership</title>
+ 
+     <!-- slider stylesheet -->
+     <link rel="stylesheet" type="text/css"
+         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+ 
+     <!-- bootstrap core css -->
+     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.css')}}" />
+ 
+     <!-- fonts style -->
+     <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Poppins:400,600,700&display=swap"
+         rel="stylesheet">
+     <!-- Custom styles for this template -->
+     <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet" />
+     <!-- responsive style -->
+     <link href="{{url_for('static', filename='css/responsive.css')}}" rel="stylesheet" />
+         <link rel="stylesheet" href="{{url_for('static', filename='css/logincss.css')}}" />
+ 
+     <script type="text/javascript" src="{{url_for('static', filename='js/createCookie.js')}}"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.min.js"></script>
+    <script type="text/javascript">
+        var socket;
+        $(document).ready(function() {
+            socket = io.connect('http://' + document.domain + ':' + location.port + '/sales');
+            socket.on('connect', function() {
+                console.log("{{deviceID}} usersDeviceId")
+                console.log("{{session['deviceId']}} userSessionDeviceId")
+                socket.emit('join', {});
+                socket.emit('text', {msg: "{{deviceID}}"})
+            });
+            // socket.on('status', function(data) {
+            //     if(data.msg!="{{session['id']}}"){
+            //         $("qrScreen").hide();
+            //     }
+            // });
+        });
+        $("userButton").click(function() {
+            leave_room();
+            $("#userForm").submit();
+        });
+        function leave_room() {
+            socket.emit('left', {}, function() {
+                socket.disconnect();
+            });
+        }
+    </script>
+ </head>
+ 
+ <body>
+     <!-- make a login form using bootstrap -->
+     <main class="main">
+         <div class="container">
+             <section class="wrapper">
+                 <div class="heading">
+                 </div>
+                 <h1 class="text-center">Login</h1>
+                 <form id="userForm" action="/getCustomer" method="POST" class="form">
+                     <div class="input-control">
+                         <label for="phone" class="input-label" hidden>Phone</label>
+                         <input type="phone" name="phone" id="phone" class="input-field" placeholder="Phone Number">
+                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                     </div>
+                     <div class="input-control">
+                         <button id="userButton" class="input-submit">Submit</button>
+                     </div>
+                 </form>
+             </section>
+         </div>
+     </main>
+ 
+     <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.4.1.min.js')}}"></script>
+     <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
+     <script type="text/javascript" src="{{url_for('static', filename='js/custom.js')}}"></script>
+     <script type="text/javascript" src="{{url_for('static', filename='js/operation.js')}}"></script>
+ </body>
+ 
+ </html>
