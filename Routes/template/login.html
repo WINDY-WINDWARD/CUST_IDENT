@@ -4,17 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/logincss.css')}}" />
+    <link rel="stylesheet" href="../static/css/logincss.css" />
     <title>Document</title>
 </head>
 <body>
-    {% if message %}
-        <h1>{{ message }}</h1>
-    {% endif %}
-    <!-- Login page with phone and password -->
-    <form action="/getCustomer/loginApi" method="POST">
-        <input type="text" name="phone" placeholder="Phone">
-        <input type="password" name="password" placeholder="Password">
-        <button type="submit">Login</button>
-    </form>
+    <main class="main">
+        <div class="container">
+            <section class="wrapper">
+                <div class="heading">
+                    {% if message %}
+                    <h1>{{ message }}</h1>
+                    {% endif %}
+                    <form action="/getCustomer/loginApi" method="POST" class="form">
+                        <div class="input-control">
+                            <label for="phone" class="input-label" hidden>Email Address</label>
+                            <input type="phone" name="phone" id="phone" class="input-field" placeholder="Phone">
+                        </div>
+                        <!-- <input type="text" name="phone" placeholder="Phone" class="input-label"> -->
+                        <!-- <input type="password" name="password" placeholder="Password" class="input-label"> -->
+                        <div class="input-control">
+                            <label for="password" class="input-label" hidden>Password</label>
+                            <input type="password" name="password" id="password" class="input-field" placeholder="Password">
+                        </div>
+                        <div class="input-control">
+                            <a href="#" class="text text-links">Forgot Password</a>
+                            <button type="submit" class="input-submit">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
 </body>
 </html>

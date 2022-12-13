@@ -3,18 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/logincss.css')}}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/logincss.css" />
+
     <title>Document</title>
 </head>
 <body>
-    {% if message %}
-        <h1>{{message}}</h1>
-    {% endif %}
+    
+    <main class="main">
+        <div class="container">
+            <section class="wrapper">
+                {% if message %}
+                <h1>{{message}}</h1>
+                {% endif %}
     <!-- Login with phone and password -->
-    <form action="/sales/loginAPI" method="POST">
-        <input type="text" name="phone" placeholder="Phone">
-        <input type="password" name="password" placeholder="Password">
-        <button type="submit">Login</button>
+    <form action="/sales/loginAPI" method="POST" class="form">
+        <div class="input-control">
+            <label for="phone" class="input-label"></label>
+        <input type="text" name="phone" placeholder="Phone" class="input-field">
+        </div>
+        <div class="input-control">
+            <label for="password" class="input-label"></label>
+        <input type="password" name="password" placeholder="Password" class="input-field">
+        </div>
+        <button type="submit" class="input-submit">Login</button>
     </form>
+    </section>
+</div>
+    </main>
 </body>
 </html>

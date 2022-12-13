@@ -5,44 +5,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registration</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/logincss.css')}}" />
+
 </head>
 
 <body>
-    <H1>
-            <!-- customer registration form collecting name address phone email -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                    <h1 class="text-center">Register</h1>
-                    <form action="/getCustomer/signUp" method="POST">
-                        <div class="form-group has-feedback">
-                            <label for="name">Name</label>
-                            <input type="name" name="name" id="name" class="form-control" placeholder="Name">
+        <main class="main">
+            <div class="container">
+                <section class="wrapper">
+                    <h1 class="text-center header_section">Register</h1>
+                    <form action="/getCustomer/signUp" method="POST" class="form">
+                        <div class="form-group has-feedback input-control">
+                            <label for="name" class="input-label" hidden>Name</label>
+                            <input type="name" name="name" id="name" class="input-field" placeholder="Name">
                             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                         </div>
-                        <div class="form-group has-feedback">
-                            <label for="address">Address</label>
-                            <input type="address" name="address" id="address" class="form-control"
+                        <div class="form-group has-feedback input-control">
+                            <label for="address" class="input-label" hidden>Address</label>
+                            <input type="address" name="address" id="address" class="form-control input-field"
                                 placeholder="Address">
                             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                         </div>
-                        <div class="form-group has-feedback">
-                            <label for="phone">Phone</label>
-                            <input type="phone" name="phone" id="phone" class="form-control" placeholder="Phone Number" value={{phone}}>
+                        <div class="form-group has-feedback input-control">
+                            <label for="phone" class="input-label" hidden>Phone</label>
+                            <input type="phone" name="phone" id="phone" class="form-control input-field" placeholder="Phone Number" value={{phone}}>
                             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                         </div>
-                        <div class="form-group has-feedback">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                        <div class="form-group has-feedback input-control">
+                            <label for="email" class="input-label" hidden>Email</label>
+                            <input type="email" name="email" id="email" class="form-control input-field" placeholder="Email">
                             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                         </div>
-                        <div class="form-group has-feedback">
-                            <label for="email">Password</label>
-                            <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                        <div class="form-group has-feedback input-control">
+                            <label for="email" class="input-label" hidden>Password</label>
+                            <input type="password" name="password" id="password" class="form-control input-field" placeholder="Password">
                             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                         </div>
-                        <div class="row">
+                        <div class="row input-control">
                             <div class="col-xs-8">
                                 <div class="checkbox icheck">
                                     <label>
@@ -51,16 +51,16 @@
                                 </div>
                             </div>
                             <!-- /.col -->
-                            <div class="col-xs-4">
-                                <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                            <div class="col-xs-4 ">
+                                <button type="submit" class="btn btn-primary btn-block btn-flat input-submit">Register</button>
                             </div>
                             <!-- /.col -->
                         </div>
                     </form>
-                </div>
+                </section>
             </div>
-        </div>
-    </H1>
+        </main>
+
 </body>
 
 </html>
