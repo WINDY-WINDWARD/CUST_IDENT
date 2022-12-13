@@ -22,28 +22,32 @@
     <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet" />
     <!-- responsive style -->
     <link href="{{url_for('static', filename='css/responsive.css')}}" rel="stylesheet" />
+        <link rel="stylesheet" href="{{url_for('static', filename='css/logincss.css')}}" />
+
     <script type="text/javascript" src="{{url_for('static', filename='js/createCookie.js')}}"></script>
 </head>
 
 <body>
     <!-- make a login form using bootstrap -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
+    <main class="main">
+        <div class="container">
+            <section class="wrapper">
+                <div class="heading">
+                </div>
                 <h1 class="text-center">Login</h1>
-                <form action="/getCustomer" method="POST">
-                    <div class="form-group has-feedback">
-                        <label for="phone">Phone</label>
-                        <input type="phone" name="phone" id="phone" class="form-control" placeholder="Phone Number">
+                <form action="/getCustomer" method="POST" class="form">
+                    <div class="input-control">
+                        <label for="phone" class="input-label" hidden>Phone</label>
+                        <input type="phone" name="phone" id="phone" class="input-field" placeholder="Phone Number">
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     </div>
-                    <div class="form-group has-feedback">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Submit</button>
+                    <div class="input-control">
+                        <button type="submit" class="input-submit">Submit</button>
                     </div>
                 </form>
-            </div>
+            </section>
         </div>
-    </div>
+    </main>
 
     <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.4.1.min.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.js')}}"></script>

@@ -7,9 +7,10 @@ import io
 load_dotenv()
 def generateQR(s):
     # get web_page from .env 
-    a = os.environ.get('WEB_PAGE')
-    print(a)
-    a = a+"getCustomer/signUp?key="+s
+    # a = os.environ.get('WEB_PAGE')
+    # print(a)
+    a="http://127.0.0.1:5000/"
+    a = a+"getCustomer?key="+s
     # Generate QR code
     url = pyqrcode.create(a)
     buffer = io.BytesIO()

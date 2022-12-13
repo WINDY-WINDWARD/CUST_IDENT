@@ -6,7 +6,7 @@ make login.html, registration.html, logcheck.html, salesLogin, salesDashboard be
 
 add session and integrate socket io for QR generation and dashboard redirect for sales rep
 
-
+add cookie check and cookie creation for customer on all pages
 
 
 
@@ -76,18 +76,19 @@ DataStream data structure
 ```
 Complete User Information When cookie created (setAnon)
 ```
-{'_id': 'DJTDwJeVDi4N3y34yloc', 
- 'ipaddress': '27.7.135.55', 
- 'geoLocation': 'Mysore', 
- 'os': {
-    'os': 'Windows', 
-    'osVersion': '10'
+{
+  "_id": "DJTDwJeVDi4N3y34yloc", 
+  "ipaddress": "27.7.135.55", 
+  "geoLocation": "Mysore", 
+  "os": {
+      "os": "Windows", 
+      "osVersion": "10"
+      }, 
+  "Browser": {
+      "browser": "Chrome", 
+      "browserVersion": "108.0.0"
     }, 
- 'Browser': {
-    'browser': 'Chrome', 
-    'browserVersion': '108.0.0'
-    }, 
- 'Incognito': False
- }
+  "Incognito": "False"
+}
 
 ```

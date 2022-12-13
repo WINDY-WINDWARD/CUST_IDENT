@@ -5,6 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.min.js"></script>
+    <script type="text/javascript">
+        var socket;
+        $(document).ready(function() {
+            socket = io.connect('http://' + document.domain + ':' + location.port + '/sales');
+            socket.on('connect', function() {
+                socket.emit('join', {});
+            });
+            socket.on('status', function(data) {
+                if(data.msg!="{{session['id']}}"){
+                    $("qrScreen").hide();
+                }
+            });
+            socket.on('message', function(data) {
+                console.log(data.msg);
+                leave_room(data.msg);
+            });
+        });
+        function leave_room(id) {
+            socket.emit('left', {}, function() {
+                socket.disconnect();
+                url = "{{url_for('salesDashboard')}}?user="+id;
+                window.location.href = url;
+            });
+        }
+    </script>
 </head>
 <body>
     <!-- show sales rep info -->
