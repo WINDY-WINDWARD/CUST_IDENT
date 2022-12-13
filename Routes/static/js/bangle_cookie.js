@@ -6,7 +6,7 @@ function setCookie(visitorID,User_IP,v_Location,v_OS,v_Browser,v_incognito,catID
     let expires = "expires="+d.toUTCString();
     document.cookie = `${cookieName} = ${visitorID} ; ${expires}`;
     $.ajax({
-      url: '/testAPI',
+      url: '/getCustomer/setAnon',
       type: "POST",
       data: JSON.stringify(
         {"_id": visitorID,
@@ -63,7 +63,7 @@ function checkCookie() {
 
   function displayDetails(catID, u_ID){
     $.ajax({
-        url: '/testAPI',
+        url: '/getCustomer/setUserData',
         type: "POST",
         data: JSON.stringify(
           {"_id": `${u_ID}`,

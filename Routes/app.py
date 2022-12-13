@@ -36,6 +36,9 @@ stitch = db.Stitch
 # Load Collection DeviceFingerprint
 DeviceFingerprint = db.DeviceFingerprint
 
+# Load Collection DataStream
+DataStream = db.DataStream
+
 
 # Session Config
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -76,16 +79,16 @@ def salesLoginAPI():
         return redirect(location=url_for('salesLogin', message="Wrong Username or Password"))
 
 
-@app.route('/sales/signUp', methods=['POST'])
-def salesSignUp():
-    # get user phone number name from request
-    data = request.get_json()
-    # check if user already exists
-    if SalesRep.find_one({"phone": data['phone']}):
-        return jsonify({"message": "User Already Exists"})
-    else:
-        # TODO: Return Sign Up Page for sales rep
-        return jsonify({"message": "Welcome Sales Rep"})
+# @app.route('/sales/signUp', methods=['POST'])
+# def salesSignUp():
+#     # get user phone number name from request
+#     data = request.get_json()
+#     # check if user already exists
+#     if SalesRep.find_one({"phone": data['phone']}):
+#         return jsonify({"message": "User Already Exists"})
+#     else:
+#         # TODO: Return Sign Up Page for sales rep
+#         return jsonify({"message": "Welcome Sales Rep"})
 
     
 @app.route('/getCustomer/qrCode', methods=['GET'])
@@ -99,16 +102,18 @@ def customerQR():
 
 
 
-@app.route('/getCustomer/userdata', methods=['POST'])
+@app.route('/getCustomer/setUserData', methods=['POST'])
 def getUserData():
-    # TODO: get user data from the session id of the user and return it to the Sales Rep
-    pass
+    data = request.get_json()
+    DataStream.insert_one({"Did": data['_id'],
+                            "data": data['data'],
+                            "timestamp": data['timestamp']})
+    return jsonify({"message": "Success"})
 
 
 @app.route('/getCustomer/setAnon', methods=['POST'])
 def setAnon():
     data = request.get_json()
-    
     if DeviceFingerprint.find_one({"_id": data['_id']}):
         return jsonify({"message": "Session Already Exists"})
     else:
@@ -126,6 +131,8 @@ def testAPI():
     data = str(request.get_json())
     print(data)
     return jsonify({"message": "Success"})
+
+
 
 
 # CUSTOMER MANAGEMENT CODE
@@ -191,6 +198,23 @@ def loginApi():
     else:
         return redirect(location=url_for('login', message="Wrong Username or Password"))
 
+
+@app.route('/salesDash', methods=['GET'])
+def salesDash():
+    # TODO: USING COOKIE MODIFY TO WORK WITH SESSION AND SALES REP ID + COOKIE
+
+    if request.cookies.get('userFingerPrint') is not None:
+        id = request.cookies.get('userFingerPrint')
+        if DataStream.find_one({"Did": id}):
+            data = DataStream.find({"Did": id})
+            print(data)
+        if stitch.find_one({"deviceID": id}):
+            customerID = stitch.find_one({"deviceID": id})['customerID']
+            customerData = Customer.find_one({"_id": customerID})
+            # print(customerData)
+            return render_template("salesDashboard.html", data=data, customerData=customerData)
+        else:
+            return render_template("salesDashboard.html", data=data)
 
 # WEB RENDER CODE
 
