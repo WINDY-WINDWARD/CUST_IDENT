@@ -163,7 +163,7 @@ def getCustomer():
 def signUp():
     # get phone, email, address, name, password from the form
     data = request.form
-    deviceID = request.cookie.get('userFingerPrint')
+    deviceID = request.cookies.get('userFingerPrint')
     # generate random id
     id = idGen()
     # check if ID used

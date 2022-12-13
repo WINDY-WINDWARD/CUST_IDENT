@@ -2,11 +2,15 @@
 
 <h2> TO-DO: </h2>
 
-make login.html, registration.html, logcheck.html, salesLogin, salesDashboard beautiful
+make salesDashboard beautiful
 
 add session and integrate socket io for QR generation and dashboard redirect for sales rep
 
-add cookie check and cookie creation for customer on all pages
+add cookie check and cookie creation for customer on all pages (DONE)
+
+
+add timestamp to cookie table from backend
+
 
 
 
