@@ -24,7 +24,7 @@ function setCookie(visitorID,User_IP,v_Location,v_OS,v_Browser,v_incognito){
     console.log("Cookie Created");
 }
 function checkCookie(name){
-  if(getCookie(name).length()<=0){
+  if(getCookie(name).length<=0){
     return false;
   }
   else{
@@ -45,18 +45,18 @@ function getCookie(cookieName) {
     }
     return "";
   }
-function checkCookie() {
-    var user = getCookie(cookieName);
-    // checking whether user is null or not
-    if (user != "") {
-      return true;
-    }
-    //if user is null
-    else {
-    //   setCookie();
-      return false;
-    }
-  }
+// function checkCookie() {
+//     var user = getCookie(cookieName);
+//     // checking whether user is null or not
+//     if (user != "") {
+//       return true;
+//     }
+//     //if user is null
+//     else {
+//     //   setCookie();
+//       return false;
+//     }
+//   }
   
 
 //Creating the final cookie with user data
@@ -89,6 +89,11 @@ function checkCookie() {
           }
           const v_incognito = result.incognito;
           setDeviceFingerprintCookie(visitorId, v_IP, v_location, v_OS, v_Browser, v_incognito);
+          var url = window.location.pathname;
+          var filename = url.substring(url.lastIndexOf('/')+1);
+          if(filename == "getCustomer"){
+            sendDataToSales();
+          }
         })
     }
     getVisitorID()

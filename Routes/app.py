@@ -19,7 +19,7 @@ load_dotenv()
 
 #remove later
 log = logging.getLogger('werkzeug')
-log.setLevel(logging.ERROR)
+# log.setLevel(logging.ERROR)
 
 # load db url from .env file
 db_url = os.environ.get('MONGO_LINK')
