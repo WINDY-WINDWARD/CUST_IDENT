@@ -1,0 +1,36 @@
+.container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin: auto;
+    width: 80%;
+}
+
+.heading{
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(233, 198, 41);
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+    text-shadow: 2px;
+}
+
+.rowContent{
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+    align-self: center;
+    text-align: center;
+}
