@@ -212,32 +212,47 @@ def loginApi():
 @app.route('/salesDash', methods=['GET'])
 def salesDash():
     # TODO: USING COOKIE MODIFY TO WORK WITH SESSION AND SALES REP ID + COOKIE
-
-    # if request.cookies.get('userFingerPrint') is not None:
-    #     id = request.cookies.get('userFingerPrint')
-    #     if DataStream.find_one({"Did": id}):
-    #         data = DataStream.find({"Did": id})
-    #         print(data)
-    #     if stitch.find_one({"deviceID": id}):
-    #         customerID = stitch.find_one({"deviceID": id})['customerID']
-    #         customerData = Customer.find_one({"_id": customerID})
-    #         # print(customerData)
-    #         return render_template("salesDashboard.html", data=data, customerData=customerData)
-    #     else:
-    #         return render_template("salesDashboard.html", data=data)
     if session.get('id') is not None:
-        id = request.args.get('user')
+        fuckid = request.args.get('user')
         # print(id)
-        if id is None:
-            ip = request.session['ip']
-            data = getCustomersIP(ip,DeviceFingerprint)
+        # if fuckid is None:
+        #     ip = request.session['ip']
+        #     ipdata = getCustomersIP(ip,DeviceFingerprint,stitch,DataStream)
+        #     if len(ipdata) == 0:
+        #         return render_template("salesDashboard.html", data=None, customerData=None)
+        #     elif len(ipdata) == 1:
+        #         fuckid = ipdata[0]
+        #         data = DataStream.find({"Did": fuckid})
+        #         # print(data)
+        #         if stitch.find_one({"deviceID": fuckid}):
+        #             customerID = stitch.find_one({"deviceID": fuckid})['customerID']
+        #             # print(customerID)
+        #             customerData = Customer.find_one({"_id": customerID})
+        #             # print(customerData)
+        #             return render_template("salesDashboard.html", data=data, customerData=customerData)
+        #             # return render_template("salesDashboard.html", data=data, customerData=None)
+        #         else:
+        #             return render_template("salesDashboard.html", data=data,customerData=None)
+        #     elif len(ipdata) > 1:
+        #         data = []
+        #         customerData = []
+        #         for i in ipdata:
+        #             data.append(DataStream.find({"Did": i}))
+        #             if stitch.find_one({"deviceID": fuckid}):
+        #                 customerID = stitch.find_one({"deviceID": fuckid})['customerID']
+        #                 # print(customerID)
+        #                 customerData.append(Customer.find_one({"_id": customerID}))
+        #                 # print(customerData)
+        #             else:
+        #                 customerData.append(None)
+        #         return render_template("salesDashboardMulti.html", data=data, customerData=customerData)
 
         data = None
-        if DataStream.find_one({"Did": id}):
-            data = DataStream.find({"Did": id})
+        if DataStream.find_one({"Did": fuckid}):
+            data = list(DataStream.find({"Did": fuckid}))
             print(data)
-            if stitch.find_one({"deviceID": id}):
-                customerID = stitch.find_one({"deviceID": id})['customerID']
+            if stitch.find_one({"deviceID": fuckid}):
+                customerID = stitch.find_one({"deviceID": fuckid})['customerID']
                 # print(customerID)
                 customerData = Customer.find_one({"_id": customerID})
                 # print(customerData)
@@ -249,6 +264,8 @@ def salesDash():
         
     else:
         return redirect(url_for('login'))
+
+
 
 
 
