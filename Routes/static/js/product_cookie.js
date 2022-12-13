@@ -21,6 +21,7 @@ function setCookie(visitorID,User_IP,v_Location,v_OS,v_Browser,v_incognito,catID
       contentType: "application/json",
       });  
     console.log("Cookie Created");
+    window.sessionStorage.setItem("productID",pID);
     displayDetails(catID, pID, visitorID);
 }
 function checkCookie(name){

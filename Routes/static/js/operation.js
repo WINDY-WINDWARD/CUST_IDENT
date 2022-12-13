@@ -4,4 +4,4 @@ categories.forEach(item =>{
         window.sessionStorage.setItem("categoryID",item.id);
         window.location.href = "/bangles";
     })
-})
+}) 

@@ -66,14 +66,14 @@
             </div>
         </header>
     </div>
-    <div class="container-fluid mt-2 mb-5">
+    <div class="container-fluid mt-2 mb-5 category" id="category_1">
         <div class="products">
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <div class="d-flex justify-content-between p-3 bg-white mb-3 align-items-center"> <span
                             class="font-weight-bold text-uppercase">Gold Bangles</span>
-                        <div> <img src="https://img.icons8.com/windows/100/000000/list.png" width="30" /> <img
-                                src="https://img.icons8.com/ios-filled/100/000000/squared-menu.png" width="25" /> </div>
+                        <!-- <div> <img src="https://img.icons8.com/windows/100/000000/list.png" width="30" /> <img
+                                src="https://img.icons8.com/ios-filled/100/000000/squared-menu.png" width="25" /> </div> -->
                     </div>
                     <div class="row g-3">
                         <div class="col-md-4">
@@ -196,7 +196,7 @@
         </div>
     </div>
     <script type="text/javascript" src="{{url_for('static', filename='js/bangles_operation.js')}}"></script>
-    <script type="text/javascript" src="{{url_for('static', filename='js/operation.js')}}"></script>
+    <!-- <script type="text/javascript" src="{{url_for('static', filename='js/operation.js')}}"></script> -->
     <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='js/bangle_cookie.js')}}"></script>
     <script>
@@ -232,7 +232,8 @@
                                 "browserVersion": result.browserVersion
                             }
                             const v_incognito = result.incognito;
-                            category = window.sessionStorage.getItem("categoryID");
+                            category = document.querySelector('.category').id;
+                            window.sessionStorage.setItem("categoryID",document.querySelector('.category').id);
                             setDeviceFingerprintCookie(visitorId, v_IP, v_location, v_OS, v_Browser, v_incognito,category);
                         })
                 }

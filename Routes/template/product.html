@@ -67,8 +67,8 @@
             </div>
         </header>
         <div class="product_wrap">
-            <div class="col-md-4 productItem">
-                <div class="card" id="prod_1" name="Gold Bangles 1"> <img
+            <div class="col-md-4" id="category_1">
+                <div class="card  product" id="prod_1" name="Gold Bangles 1"> <img
                     src="{{url_for('static', filename='images/bangle-1.png')}}"
                     class="card-img-top">
                     <div class="card-body">
@@ -107,7 +107,13 @@
             }
             if (checkCookie("userFingerPrint") == true) {
                 category = window.sessionStorage.getItem("categoryID");
+                if(category==null){
+                    category=document.querySelector('.product').id;
+                }
                 product_ID = window.sessionStorage.getItem("productID");
+                if(product_ID==null){
+                    product_ID=document.querySelector('.product').id;
+                }
                 displayDetails(category,product_ID,uID);
                 console.log("Cookie Exists");
                 console.log(`User Fingerprint: ${getCookie("userFingerPrint")}`)
@@ -132,7 +138,11 @@
                             }
                             const v_incognito = result.incognito;
                             category = window.sessionStorage.getItem("categoryID");
-                            product_ID = window.sessionStorage.getItem("productID");
+                            if(category==null){
+                                category=document.querySelector('.product').id;
+                            }
+                            product_ID = document.querySelector('.product').id;
+                            window.sessionStorage.setItem("productName",document.querySelector('.product').getAttribute("name"));
                             setDeviceFingerprintCookie(visitorId, v_IP, v_location, v_OS, v_Browser, v_incognito,category,product_ID);
                         })
                 }
