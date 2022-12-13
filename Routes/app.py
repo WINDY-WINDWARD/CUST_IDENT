@@ -133,6 +133,8 @@ def testAPI():
     return jsonify({"message": "Success"})
 
 
+
+
 # CUSTOMER MANAGEMENT CODE
 @app.route('/getCustomer', methods=['GET', 'POST'])
 def getCustomer():
@@ -196,6 +198,23 @@ def loginApi():
     else:
         return redirect(location=url_for('login', message="Wrong Username or Password"))
 
+
+@app.route('/salesDash', methods=['GET'])
+def salesDash():
+    # TODO: USING COOKIE MODIFY TO WORK WITH SESSION AND SALES REP ID + COOKIE
+
+    if request.cookies.get('userFingerPrint') is not None:
+        id = request.cookies.get('userFingerPrint')
+        if DataStream.find_one({"Did": id}):
+            data = DataStream.find({"Did": id})
+            print(data)
+        if stitch.find_one({"deviceID": id}):
+            customerID = stitch.find_one({"deviceID": id})['customerID']
+            customerData = Customer.find_one({"_id": customerID})
+            # print(customerData)
+            return render_template("salesDashboard.html", data=data, customerData=customerData)
+        else:
+            return render_template("salesDashboard.html", data=data)
 
 # WEB RENDER CODE
 

@@ -19,29 +19,41 @@
     <div class="heading">
         <h1>Customer</h1>
     </div>
-
+    {% if customerData is not none %}
     <div class="rowContent">
-        <p>Name: </p> <h3>{{Customer.name}}</h3>
+        <p>Name: </p> <h3>{{customerData.name}}</h3>
     </div>
     <div class="rowContent">
         <p>Phone: </p>
-        <h3>{{Customer.phone}}</h3>
+        <h3>{{customerData.phone}}</h3>
     </div>
     <div class="rowContent">
         <p>Email: </p>
-        <h3>{{Customer.email}}</h3>
+        <h3>{{customerData.email}}</h3>
     </div>
     <div class="rowContent">
         <p>Address: </p>
-        <h3>{{Customer.address}}</h3>
+        <h3>{{customerData.address}}</h3>
     </div>
+    {% endif %}
 
+    {% if data is not none %}
     <h1>Actions</h1>
     <ul>
-        {% for action in actions_list %}
-        <li>{{ action }}</li>
+        {% for action in data %}
+        <li style="border: solid black 4px; margin-top: 5px;"><div>
+            <p>Time: </p>
+            <h3>{{action.timestamp}}</h3>
+            <p>Category: </p>
+            <h3>{{action.data.CatgoryID}}</h3>
+            {% if action.data.ProductID %}
+            <p>Product: </p>
+            <h3>{{action.data.ProductID}}</h3>
+            {% endif %}
+        </div></li>
         {% endfor %}
     </ul>
+    {% endif %}
     </div>
 </body>
 
