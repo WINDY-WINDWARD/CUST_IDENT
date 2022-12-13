@@ -94,7 +94,7 @@ Complete User Information When cookie created (setAnon)
 
 Product Log
 ```
-{'_id': 'Wb4SHxNOQW9C3gli1ZbU', 
+{'Did': 'Wb4SHxNOQW9C3gli1ZbU', 
  'data': {'CatgoryID': 'category_2', 
  'ProductID': 'prod_4'}, 
  'timestamp': '1670910297343'
