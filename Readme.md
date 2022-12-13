@@ -14,6 +14,8 @@ add timestamp to cookie table from backend
 
 
 
+
+
 data structure for Customer login/signup
 ```
 {
