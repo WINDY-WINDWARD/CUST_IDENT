@@ -108,17 +108,17 @@ def getUserData():
 @app.route('/getCustomer/setAnon', methods=['POST'])
 def setAnon():
     data = request.get_json()
-    # print(data)
-    # check if user already exists
+    
     if DeviceFingerprint.find_one({"_id": data['_id']}):
-        return jsonify({"message": "User Already Exists"})
-
-    DeviceFingerprint.insert_one({"_id": data['_id'], 
-                        "deviceName": data['deviceName'], 
-                        "deviceOS": data['deviceOS'], 
-                        "ipAddress": data['ipAddress'], 
-                        "geoLocation": data['geoLocation']})
-    return jsonify({"message": "Success"})
+        return jsonify({"message": "Session Already Exists"})
+    else:
+        DeviceFingerprint.insert_one({"_id": data['_id'], 
+                            "ipaddress": data['ipaddress'], 
+                            "geoLocation": data['geoLocation'], 
+                            "os": data['os'], 
+                            "Browser": data['Browser'], 
+                            "Incognito": data['Incognito']})
+        return jsonify({"message": "Success"})
 
 
 @app.route('/testAPI', methods=['GET', 'POST'])
@@ -129,8 +129,6 @@ def testAPI():
 
 
 # CUSTOMER MANAGEMENT CODE
-
-
 @app.route('/getCustomer', methods=['GET', 'POST'])
 def getCustomer():
     if request.method == 'POST':
