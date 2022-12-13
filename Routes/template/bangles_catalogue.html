@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,312 +10,183 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
     <link rel="stylesheet" href="{{url_for('static', filename='css/product_style.css')}}">
+    <script type="text/javascript" src="{{url_for('static', filename='js/createCookie.js')}}"></script>
     <title>Gold Bangles</title>
 </head>
+
 <body>
     <div class="hero_area">
         <header class="header_section">
             <div class="container-fluid">
-              <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" href="{{url_for('index')}}">
-                  <img src="{{url_for('static', filename='images/Caratlane-logo-PNG.webp')}}" alt="">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-        
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-                    <ul class="navbar-nav  ">
-                      <li class="nav-item active">
-                        <a class="nav-link" href="{{url_for('index')}}">Home <span class="sr-only">(current)</span></a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('about')}}"> About</a>
-                      </li>
-                      <!-- <li class="nav-item">
+                <nav class="navbar navbar-expand-lg custom_nav-container ">
+                    <a class="navbar-brand" href="{{url_for('index')}}">
+                        <img src="{{url_for('static', filename='images/Caratlane-logo-PNG.webp')}}" alt="">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+                            <ul class="navbar-nav  ">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{url_for('index')}}">Home <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{url_for('about')}}"> About</a>
+                                </li>
+                                <!-- <li class="nav-item">
                         <a class="nav-link" href="{{url_for('jewellery')}}">Jewellery </a>
                       </li> -->
-                      <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('contact')}}">Contact us</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                      </li>
-                    </ul>
-        
-                  </div>
-                  <div class="quote_btn-container ">
-                    <a href="">
-                      <img src="{{url_for('static', filename='images/cart.png')}}" alt="">
-                      <div class="cart_number">
-                        0
-                      </div>
-                    </a>
-                    <form class="form-inline">
-                      <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
-                    </form>
-                  </div>
-                </div>
-              </nav>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{url_for('contact')}}">Contact us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/login">Login</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="quote_btn-container ">
+                            <a href="">
+                                <img src="{{url_for('static', filename='images/cart.png')}}" alt="">
+                                <div class="cart_number">
+                                    0
+                                </div>
+                            </a>
+                            <form class="form-inline">
+                                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
             </div>
-          </header>
-        </div>
+        </header>
+    </div>
     <div class="container-fluid mt-2 mb-5">
         <div class="products">
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <div class="d-flex justify-content-between p-3 bg-white mb-3 align-items-center"> <span class="font-weight-bold text-uppercase">Gold Bangles</span>
-                        <div> <img src="https://img.icons8.com/windows/100/000000/list.png" width="30" /> <img src="https://img.icons8.com/ios-filled/100/000000/squared-menu.png" width="25" /> </div>
+                    <div class="d-flex justify-content-between p-3 bg-white mb-3 align-items-center"> <span
+                            class="font-weight-bold text-uppercase">Gold Bangles</span>
+                        <div> <img src="https://img.icons8.com/windows/100/000000/list.png" width="30" /> <img
+                                src="https://img.icons8.com/ios-filled/100/000000/squared-menu.png" width="25" /> </div>
                     </div>
                     <div class="row g-3">
                         <div class="col-md-4">
-                            <div class="card"> <img src="{{url_for('static', filename='images/bangle-1.png')}}" class="card-img-top">
+                            <div class="card product" id="prod_1" name="Gold Bangles 1"> <img
+                                    src="{{url_for('static', filename='images/bangle-1.png')}}"
+                                    class="card-img-top product">
                                 <div class="card-body">
-                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wood Sofa set-3</span> <span class="font-weight-bold">$550</span> </div>
-                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="d-flex align-items-center flex-row"><span class="guarantee">2 Years Guarantee</span> </div>
+                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Gold
+                                            Bangle 1</span> <span class="font-weight-bold">$550</span> </div>
+                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title
+                                        and make up the bulk of the card's content.</p>
+                                    <div class="d-flex align-items-center flex-row"><span class="guarantee">2 Years
+                                            Guarantee</span> </div>
                                 </div>
                                 <hr>
                                 <div class="card-body">
-                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
+                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to
+                                            wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card"> <img src="{{url_for('static', filename='images/bangle-2.png')}}" class="card-img-top">
+                            <div class="card product" id="prod_2" name="Gold Bangles 2"> <img
+                                    src="{{url_for('static', filename='images/bangle-2.png')}}"
+                                    class="card-img-top product">
                                 <div class="card-body">
-                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wood Sofa set-3</span> <span class="font-weight-bold">$600</span> </div>
-                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="d-flex align-items-center flex-row"><span class="guarantee">1 Years Guarantee</span> </div>
+                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Gold
+                                            Bangle 2</span> <span class="font-weight-bold">$600</span> </div>
+                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title
+                                        and make up the bulk of the card's content.</p>
+                                    <div class="d-flex align-items-center flex-row"><span class="guarantee">1 Years
+                                            Guarantee</span> </div>
                                 </div>
                                 <hr>
                                 <div class="card-body">
-                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
+                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to
+                                            wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card"> <img src="{{url_for('static', filename='images/bangle-3.jpg')}}" class="card-img-top">
+                            <div class="card product" id="prod_3" name="Gold Bangles 3"> <img
+                                    src="{{url_for('static', filename='images/bangle-3.jpg')}}"
+                                    class="card-img-top product">
                                 <div class="card-body">
-                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wood Sofa set-2</span> <span class="font-weight-bold">$1,000</span> </div>
-                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="d-flex align-items-center flex-row"><span class="guarantee">4 Years Guarantee</span> </div>
+                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Gold
+                                            Bangle 3</span> <span class="font-weight-bold">$1,000</span> </div>
+                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title
+                                        and make up the bulk of the card's content.</p>
+                                    <div class="d-flex align-items-center flex-row"><span class="guarantee">4 Years
+                                            Guarantee</span> </div>
                                 </div>
                                 <hr>
                                 <div class="card-body">
-                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
+                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to
+                                            wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card"> <img src="{{url_for('static', filename='images/bangle-4.jpg')}}" class="card-img-top">
+                            <div class="card product" id="prod_4" name="Gold Bangles 4"> <img
+                                    src="{{url_for('static', filename='images/bangle-4.jpg')}}"
+                                    class="card-img-top product">
                                 <div class="card-body">
-                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wood Sofa set-4</span> <span class="font-weight-bold">$850</span> </div>
-                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="d-flex align-items-center flex-row"><span class="guarantee">3 Years Guarantee</span> </div>
+                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Gold
+                                            Bangle 4</span> <span class="font-weight-bold">$850</span> </div>
+                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title
+                                        and make up the bulk of the card's content.</p>
+                                    <div class="d-flex align-items-center flex-row"><span class="guarantee">3 Years
+                                            Guarantee</span> </div>
                                 </div>
                                 <hr>
                                 <div class="card-body">
-                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
+                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to
+                                            wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card"> <img src="{{url_for('static', filename='images/bangle-1.png')}}" class="card-img-top">
+                            <div class="card product" id="prod_5" name="Gold Bangles 5"> <img
+                                    src="{{url_for('static', filename='images/bangle-1.png')}}"
+                                    class="card-img-top product">
                                 <div class="card-body">
-                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wood Sofa set-5</span> <span class="font-weight-bold">$15,50</span> </div>
-                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="d-flex align-items-center flex-row"><span class="guarantee">8 Years Guarantee</span> </div>
+                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Gold
+                                            Bangle 5</span> <span class="font-weight-bold">$15,50</span> </div>
+                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title
+                                        and make up the bulk of the card's content.</p>
+                                    <div class="d-flex align-items-center flex-row"><span class="guarantee">8 Years
+                                            Guarantee</span> </div>
                                 </div>
                                 <hr>
                                 <div class="card-body">
-                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
+                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to
+                                            wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card"> <img src="{{url_for('static', filename='images/bangle-2.png')}}" class="card-img-top">
+                            <div class="card product" id="prod_6" name="Gold Bangles 6"> <img
+                                    src="{{url_for('static', filename='images/bangle-2.png')}}"
+                                    class="card-img-top product">
                                 <div class="card-body">
-                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wood Sofa set-3</span> <span class="font-weight-bold">$550</span> </div>
-                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="d-flex align-items-center flex-row"><span class="guarantee">2 Years Guarantee</span> </div>
+                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Gold
+                                            Bangle 6</span> <span class="font-weight-bold">$550</span> </div>
+                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title
+                                        and make up the bulk of the card's content.</p>
+                                    <div class="d-flex align-items-center flex-row"><span class="guarantee">2 Years
+                                            Guarantee</span> </div>
                                 </div>
                                 <hr>
                                 <div class="card-body">
-                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <!--Chairs-->
-                    <div class="d-flex justify-content-between p-3 bg-white mb-3 align-items-center"> <span class="font-weight-bold text-uppercase">Luxury Chairs</span>
-                        <div> <img src="https://img.icons8.com/windows/100/000000/list.png" width="30" /> <img src="https://img.icons8.com/ios-filled/100/000000/squared-menu.png" width="25" /> </div>
-                    </div>
-                    <div class="row g-3">
-                        <div class="col-md-4">
-                            <div class="card"> <img src="https://i.imgur.com/2ldaKjy.jpg" class="card-img-top">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wodden chairs set-2</span> <span class="font-weight-bold">$150</span> </div>
-                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">4 Years Guarantee</span> </div>
-                                </div>
-                                <hr>
-                                <div class="card-body">
-                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card"> <img src="https://i.imgur.com/lTgyE2X.jpg" class="card-img-top">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wodden Chairs Premium set-2</span> <span class="font-weight-bold">$200</span> </div>
-                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">2 Years Guarantee</span> </div>
-                                </div>
-                                <hr>
-                                <div class="card-body">
-                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card"> <img src="https://i.imgur.com/NFcMfYE.jpg" class="card-img-top">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Office Chairs set-2</span> <span class="font-weight-bold">$500</span> </div>
-                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">7 Years Guarantee</span> </div>
-                                </div>
-                                <hr>
-                                <div class="card-body">
-                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card"> <img src="https://i.imgur.com/eu74Mje.jpg" class="card-img-top">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Wodden Chair set-3</span> <span class="font-weight-bold">$350</span> </div>
-                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">3 Years Guarantee</span> </div>
-                                </div>
-                                <hr>
-                                <div class="card-body">
-                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card"> <img src="https://i.imgur.com/L5iInTA.jpg" class="card-img-top">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Dinning chairs set-4</span> <span class="font-weight-bold">$200</span> </div>
-                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">8 Years Guarantee</span> </div>
-                                </div>
-                                <hr>
-                                <div class="card-body">
-                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card"> <img src="https://i.imgur.com/64PRDTx.jpg" class="card-img-top">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Office Chairs set-2</span> <span class="font-weight-bold">$450</span> </div>
-                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">3 Years Guarantee</span> </div>
-                                </div>
-                                <hr>
-                                <div class="card-body">
-                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                    <!--Dining-->
-                    <div class="d-flex justify-content-between p-3 bg-white mb-3 align-items-center"> <span class="font-weight-bold text-uppercase">Luxury Dining</span>
-                        <div> <img src="https://img.icons8.com/windows/100/000000/list.png" width="30" /> <img src="https://img.icons8.com/ios-filled/100/000000/squared-menu.png" width="25" /> </div>
-                    </div>
-                    <div class="row g-3">
-                        <div class="col-md-4">
-                            <div class="card"> <img src="https://i.imgur.com/hnQ492C.jpg" class="card-img-top">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Dinning table set-4</span> <span class="font-weight-bold">$450</span> </div>
-                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">4 Years Guarantee</span> </div>
-                                </div>
-                                <hr>
-                                <div class="card-body">
-                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card"> <img src="https://i.imgur.com/10JlX4K.jpg" class="card-img-top">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Dinning set set-8</span> <span class="font-weight-bold">$2,000</span> </div>
-                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">6 Years Guarantee</span> </div>
-                                </div>
-                                <hr>
-                                <div class="card-body">
-                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card"> <img src="https://i.imgur.com/eu74Mje.jpg" class="card-img-top">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Dinning chairs set-3</span> <span class="font-weight-bold">$900</span> </div>
-                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">4 Years Guarantee</span> </div>
-                                </div>
-                                <hr>
-                                <div class="card-body">
-                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card"> <img src="https://i.imgur.com/uh0knIW.jpg" class="card-img-top">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Dinning table set-10</span> <span class="font-weight-bold">$3,500</span> </div>
-                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">6 Years Guarantee</span> </div>
-                                </div>
-                                <hr>
-                                <div class="card-body">
-                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card"> <img src="https://i.imgur.com/rdYgwhr.jpg" class="card-img-top">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Table chair set-5</span> <span class="font-weight-bold">$250</span> </div>
-                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">8 Years Guarantee</span> </div>
-                                </div>
-                                <hr>
-                                <div class="card-body">
-                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card"> <img src="https://i.imgur.com/x6hhqGn.jpg" class="card-img-top">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between"> <span class="font-weight-bold">Luxury Dinning set-7</span> <span class="font-weight-bold">$750</span> </div>
-                                    <p class="card-text mb-1 mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">6 Years Guarantee</span> </div>
-                                </div>
-                                <hr>
-                                <div class="card-body">
-                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
+                                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to
+                                            wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
                                 </div>
                             </div>
                         </div>
@@ -323,5 +195,8 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="{{url_for('static', filename='js/bangles_operation.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/operation.js')}}"></script>
 </body>
+
 </html>

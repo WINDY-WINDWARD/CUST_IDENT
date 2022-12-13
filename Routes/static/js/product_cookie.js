@@ -1,7 +1,6 @@
 //Cookie Master Functions
-
 let cookieName = "userFingerPrint";
-function setCookie(visitorID,User_IP,v_Location,v_OS,v_Browser,v_incognito){
+function setCookie(visitorID,User_IP,v_Location,v_OS,v_Browser,v_incognito,catID,pID){
     const d = new Date();
     d.setTime(d.getTime()+(365*24*60*60*1000));
     let expires = "expires="+d.toUTCString();
@@ -22,6 +21,7 @@ function setCookie(visitorID,User_IP,v_Location,v_OS,v_Browser,v_incognito){
       contentType: "application/json",
       });  
     console.log("Cookie Created");
+    displayDetails(catID, pID, visitorID);
 }
 function checkCookie(name){
   if(getCookie(name).length()<=0){
@@ -57,39 +57,24 @@ function checkCookie() {
       return false;
     }
   }
-  
 
-//Creating the final cookie with user data
 
-  function setDeviceFingerprintCookie(id, ip, v_loc, v_os, v_browser, v_incog) {
-    // console.log(id)
-    setCookie(id, ip, v_loc, v_os, v_browser, v_incog);
-  }
-  if (checkCookie("userFingerPrint") == true) {
-    console.log("Cookie Exists");
-    console.log(`User Fingerprint: ${getCookie("userFingerPrint")}`)
-  }
-  else {
-    function getVisitorID() {
-      const fpPromise = import('https://fpjscdn.net/v3/UnS8qXlX9aVOQncJJVKP')
-        .then(FingerprintJS => FingerprintJS.load())
-      fpPromise
-        .then(fp => fp.get({ extendedResult: true }))
-        .then(result => {
-          const visitorId = result.visitorId
-          const v_IP = result.ip
-          const v_location = result.ipLocation.city.name;
-          const v_OS = {
-            "os": result.os,
-            "osVersion": result.osVersion
+  //
+
+  function displayDetails(catID,pID,u_ID){
+    $.ajax({
+        url: '/testAPI',
+        type: "POST",
+        data: JSON.stringify(
+          {"_id": `${u_ID}`,
+           "data": {
+                "CatgoryID": `${catID}`,
+                "ProductID":`${pID}`
+            },
+            "timestamp": `${Date.now()}`
           }
-          const v_Browser = {
-            "browser": result.browserName,
-            "browserVersion": result.browserVersion
-          }
-          const v_incognito = result.incognito;
-          setDeviceFingerprintCookie(visitorId, v_IP, v_location, v_OS, v_Browser, v_incognito);
-        })
-    }
-    getVisitorID()
-  }
+          ),
+        dataType: "json",
+        contentType: "application/json",
+        });  
+}

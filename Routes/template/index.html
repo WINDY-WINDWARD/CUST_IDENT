@@ -27,7 +27,6 @@
   <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet" />
   <!-- responsive style -->
   <link href="{{url_for('static', filename='css/responsive.css')}}" rel="stylesheet" />
-  <script type="text/javascript" src="{{url_for('static', filename='js/fingerprint.js')}}"></script>
   <script type="text/javascript" src="{{url_for('static', filename='js/createCookie.js')}}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
@@ -51,8 +50,7 @@
             <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
               <ul class="navbar-nav  ">
                 <li class="nav-item active">
-                  <a class="nav-link" href="{{url_for('index')}}">Home <span
-                      class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="{{url_for('index')}}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{url_for('about')}}"> About</a>
@@ -314,8 +312,8 @@
         </h2>
       </div>
       <div class="price_container">
-        <div class="box" id="item_1">
-          <div class="name">
+        <div class="box category" id="category_1" name="Gold Banles">
+          <div>
             <h6>
               Gold Bangles
             </h6>
@@ -329,8 +327,8 @@
             </a>
           </div>
         </div>
-        <div class="box" id="item_2">
-          <div class="name">
+        <div class="box category" id="category_2" name="Diamond Rings">
+          <div>
             <h6>
               Diamond Rings
             </h6>
@@ -344,8 +342,8 @@
             </a>
           </div>
         </div>
-        <div class="box" id="item_3">
-          <div class="name">
+        <div class="box category" id="category_3" name="Gold Earings">
+          <div>
             <h6>
               Gold earings
             </h6>
@@ -652,41 +650,6 @@
   <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
   <!-- <script type="text/javascript" src="{{url_for('static', filename='js/custom.js')}}"></script> -->
   <script type="text/javascript" src="{{url_for('static', filename='js/operation.js')}}"></script>
-  <script type="text/javascript">
-    function setDeviceFingerprintCookie(id,ip,v_loc,v_os,v_browser,v_incog){
-      // console.log(id)
-      setCookie(id,ip,v_loc,v_os,v_browser,v_incog);
-    }
-    if (checkCookie("userFingerPrint")==true) {
-      console.log("Cookie Exists");
-      console.log(`User Fingerprint: ${getCookie("userFingerPrint")}`)
-    }
-    else {
-      function getVisitorID(){
-        const fpPromise = import('https://fpjscdn.net/v3/UnS8qXlX9aVOQncJJVKP')
-          .then(FingerprintJS => FingerprintJS.load())
-        fpPromise
-          .then(fp => fp.get({ extendedResult: true }))
-          .then(result => {
-              const visitorId = result.visitorId
-              const v_IP = result.ip
-              const v_location = result.ipLocation.city.name;
-              const v_OS = {
-                "os": result.os,
-                "osVersion": result.osVersion
-              }
-              const v_Browser={
-                "browser": result.browserName,
-                "browserVersion": result.browserVersion
-              }
-              const v_incognito = result.incognito;
-              console.log(v_incognito);
-              setDeviceFingerprintCookie(visitorId,v_IP,v_location,v_OS,v_Browser,v_incognito);
-          })
-      }
-      getVisitorID()
-    }
-  </script>
 </body>
 
 </html>

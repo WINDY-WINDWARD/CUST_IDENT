@@ -193,6 +193,9 @@ def contact():
 def about():
     return render_template('about.html')
 
+@app.route('/product')
+def product():
+    return render_template('product.html')
 
 @app.route('/bangles')
 def bangles():
