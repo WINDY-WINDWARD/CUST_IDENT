@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
     <link rel="stylesheet" href="{{url_for('static', filename='css/product_style.css')}}">
-    <script type="text/javascript" src="{{url_for('static', filename='js/createCookie.js')}}"></script>
+    <!-- <script type="text/javascript" src="{{url_for('static', filename='js/createCookie.js')}}"></script> -->
     <title>Gold Bangles</title>
 </head>
 
@@ -197,6 +197,48 @@
     </div>
     <script type="text/javascript" src="{{url_for('static', filename='js/bangles_operation.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='js/operation.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/bangle_cookie.js')}}"></script>
+    <script>
+        let category, uID;
+        let cookieN = "userFingerPrint";
+        uID=getCookie(cookieN);
+        function setDeviceFingerprintCookie(id, ip, v_loc, v_os, v_browser, v_incog,catID) {
+                // console.log(id)
+                setCookie(id, ip, v_loc, v_os, v_browser, v_incog,catID);
+            }
+            if (checkCookie("userFingerPrint") == true) {
+                category = window.sessionStorage.getItem("categoryID");
+                displayDetails(category, uID);
+                console.log("Cookie Exists");
+                console.log(`User Fingerprint: ${getCookie("userFingerPrint")}`)
+            }
+            else {
+                function getVisitorID() {
+                    const fpPromise = import('https://fpjscdn.net/v3/UnS8qXlX9aVOQncJJVKP')
+                        .then(FingerprintJS => FingerprintJS.load())
+                    fpPromise
+                        .then(fp => fp.get({ extendedResult: true }))
+                        .then(result => {
+                            const visitorId = result.visitorId
+                            const v_IP = result.ip
+                            const v_location = result.ipLocation.city.name;
+                            const v_OS = {
+                                "os": result.os,
+                                "osVersion": result.osVersion
+                            }
+                            const v_Browser = {
+                                "browser": result.browserName,
+                                "browserVersion": result.browserVersion
+                            }
+                            const v_incognito = result.incognito;
+                            category = window.sessionStorage.getItem("categoryID");
+                            setDeviceFingerprintCookie(visitorId, v_IP, v_location, v_OS, v_Browser, v_incognito,category);
+                        })
+                }
+                getVisitorID()
+            }
+    </script>
 </body>
 
 </html>

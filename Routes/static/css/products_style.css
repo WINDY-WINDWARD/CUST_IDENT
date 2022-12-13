@@ -1,3 +1,28 @@
+@media (min-width:994px) {
+    .productItem{
+        width: 50%;
+    }
+}
+@media (max-width:994px) {
+    .productItem{
+        width: 80%;
+    }
+    .buttons button{
+        margin: 7px;
+    }
+}
 .header-section .nav-item a{
     color: white;
+}
+.product_wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.productItem{
+    margin: 3rem 1rem 0 1rem;
+    max-width: 80%;
+}
+.specifications{
+    margin-top: 10px;
 }

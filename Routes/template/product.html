@@ -66,10 +66,39 @@
                 </nav>
             </div>
         </header>
+        <div class="product_wrap">
+            <div class="col-md-4 productItem">
+                <div class="card" id="prod_1" name="Gold Bangles 1"> <img
+                    src="{{url_for('static', filename='images/bangle-1.png')}}"
+                    class="card-img-top">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between"> <span class="font-weight-bold">Gold
+                            Bangle 1</span> <span class="font-weight-bold">$550</span> </div>
+                            <p class="card-text mb-1 mt-1">Some quick example text to build on the card title
+                                and make up the bulk of the card's content.</p>
+                    <div class="d-flex align-items-center flex-row"><span class="guarantee">2 Years
+                            Guarantee</span> </div>
+                    <div class="specifications">
+                        <span class="font-weight-bold">Specifications:</span> 
+                        <ul>
+                            <li>sbgiusrbgiur</li>
+                            <li>54X87X34</li>
+                            <li>lsrngkjrsbzkrdnbnbzdrnz</li>
+                            <li>segzsrhtzj</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <div class="card-body">
+                    <div class="text-right buttons"> <button class="btn btn-outline-dark">add to
+                        wishlist</button> <button class="btn btn-dark">Add to cart</button> </div>
+                    </div>
+            </div>
+        </div>
     </div>
-    <script type="text/javascript" src="{{url_for('static', filename='js/product_operation.js')}}"></script>
-    <script>
-        let category, product_ID,uID;
+        <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
+        <script>
+            let category, product_ID,uID;
         let cookieN = "userFingerPrint";
         uID=getCookie(cookieN);
         function setDeviceFingerprintCookie(id, ip, v_loc, v_os, v_browser, v_incog,catID,proID) {
@@ -77,6 +106,8 @@
                 setCookie(id, ip, v_loc, v_os, v_browser, v_incog,catID,proID);
             }
             if (checkCookie("userFingerPrint") == true) {
+                category = window.sessionStorage.getItem("categoryID");
+                product_ID = window.sessionStorage.getItem("productID");
                 displayDetails(category,product_ID,uID);
                 console.log("Cookie Exists");
                 console.log(`User Fingerprint: ${getCookie("userFingerPrint")}`)

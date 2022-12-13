@@ -3,6 +3,6 @@ Routes/test.py
 Routes/__pycache__
 Routes/app2.py
 Routes/flask_session
-
+flask_session
 .env
 
