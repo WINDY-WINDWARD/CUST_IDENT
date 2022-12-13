@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{url_for('static', filename='css/logincss.css')}}" />
-    <link rel="stylesheet" href="../static/css/logincss.css" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/logincss.css')}}" />
+    <!-- <link rel="stylesheet" href="../static/css/logincss.css" /> -->
     <script type="text/javascript" src="{{url_for('static', filename='js/createCookie.js')}}"></script>
     <title>Document</title>
 </head>
@@ -14,8 +14,9 @@
         <div class="container">
             <section class="wrapper">
                 <div class="heading">
+                    <h1>User Registered</h1>
                     {% if message %}
-                    <h1>{{ message }}</h1>
+                    <h3 style="color: red;">{{ message }}</h3>
                     {% endif %}
                     <form action="/getCustomer/loginApi" method="POST" class="form">
                         <div class="input-control">
