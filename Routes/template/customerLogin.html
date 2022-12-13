@@ -32,10 +32,17 @@
         $(document).ready(function() {
             socket = io.connect('http://' + document.domain + ':' + location.port + '/sales');
             socket.on('connect', function() {
-                console.log("{{deviceID}} usersDeviceId")
-                console.log("{{session['deviceId']}} userSessionDeviceId")
+                // console.log("{{deviceID}} usersDeviceId")
+                // console.log("{{session['deviceId']}} userSessionDeviceId")
                 socket.emit('join', {});
-                socket.emit('text', {msg: "{{deviceID}}"})
+                if ('{{deviceId}}'!='None') {
+                    socket.emit('text', {msg: "{{deviceID}}"})
+                }else{
+                    while(!checkCookie("userFingerPrint")){
+                        setTimeout(()=>{},1000)
+                    }
+                    socket.emit('text', {msg: `${getCookie('userFingerPrint')}`})
+                }
             });
             // socket.on('status', function(data) {
             //     if(data.msg!="{{session['id']}}"){
