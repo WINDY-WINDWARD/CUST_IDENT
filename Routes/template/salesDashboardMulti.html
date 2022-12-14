@@ -43,7 +43,7 @@
             {% if usage[i] is not none %}
             <h1>Actions</h1>
             <ul>
-                {% for action in usage[i] %}
+                {% for action in usage[i]|reverse %}
                 <li style="border: solid black 4px; margin-top: 5px;">
                     <div>
                         <p>Date(YYYY-MM-DD) and Time: </p>

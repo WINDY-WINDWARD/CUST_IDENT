@@ -40,7 +40,7 @@
     {% if data is not none %}
     <h1>Actions</h1>
     <ul>
-        {% for action in data %}
+        {% for action in data|reverse %}
         <li style="border: solid black 4px; margin-top: 5px;"><div>
             <p>Date(YYYY-MM-DD) and Time: </p>
             <h3>{{action.timestamp}}</h3>
