@@ -1,22 +1,56 @@
-<h1> Hello World </h1>
+<h1> CodeMafia </h1>
+Team Members:
+    Karthik Sarode
+    Ashish Kumar
+    Sasikumar
+    Sai Ramana
 
-<h2> TO-DO: </h2>
+<br>
+To run this code:
 
-make salesDashboard beautiful
+first install the following dependencies using pip
 
-add session and integrate socket io for QR generation and dashboard redirect for sales rep
-
-add cookie check and cookie creation for customer on all pages (DONE)
-
-
-add timestamp to cookie table from backend
-
-
-
+Flask
+Flask-SocketIO
+Flask-Session
+PyQRcode
+pymongo
+python-dotenv
 
 
+create .env file in the routes directory
 
-data structure for Customer login/signup
+setup the following:
+
+note: the project must be hosted on the default 80 port and the domain name shouldnt have a port number
+
+```
+
+MONGO_LINK = '<your mongo link>'
+
+WEB_PAGE = '<the domain name>'
+
+```
+
+
+Setup your Mongo with the following
+
+Create Database
+
+```
+<Database>
+Customer_Identifier
+            <collections>
+            Customer
+            SalesRep
+            Stitch
+            DeviceFingerprint
+            DataStream
+```
+
+<h2>The following is the Structure for Mongo Collections</h2>
+<h2> data structure for Customer/SalesRep </h2>
+
 ```
 {
     "_id":"Value",
@@ -25,51 +59,19 @@ data structure for Customer login/signup
     "phone":"Value",
     "address": "Value"
 }
-
-
 ```
 
-Product Data structure
+<h2>Stitch data structure</h2>
+_id added automatically by db
 
 ```
-
 {
-    "_id": "Value",
-    "name": "Value",
-    "CategoryID": "Value",
-    "Description": "Value",
-    "price":"Value"
+    "deviceID": "value"
+    "customerID": "value"
 }
-
 ```
 
-SalesRep Data structure
-
-```
-
-{
-    "_id": "Value",
-    "name": "Value",
-    "permission": "Value",
-    "phone":"Value",
-    "email":"Value"
-}
-
-```
-DeviceFingerprinting Data structure
-
-```
-
-{
-    "_id": "Value",
-    "deviceName": "Value",
-    "deviceOS": "Value",
-    "ipAddress":"Value",
-    "geoLocation":"Value"
-}
-
-```
-DataStream data structure
+<h2>DataStream data structure</h2>
 
 ```
 
@@ -80,7 +82,10 @@ DataStream data structure
 }
 
 ```
+
+<h2>Device Fingerprint</h2>
 Complete User Information When cookie created (setAnon)
+
 ```
 {
   "_id": "DJTDwJeVDi4N3y34yloc", 
@@ -96,16 +101,5 @@ Complete User Information When cookie created (setAnon)
     }, 
   "Incognito": "False"
 }
-
-
-Product Log
-```
-{'Did': 'Wb4SHxNOQW9C3gli1ZbU', 
- 'data': {'CatgoryID': 'category_2', 
- 'ProductID': 'prod_4'}, 
- 'timestamp': '1670910297343'
- }
-
-```
 
 ```
