@@ -7,9 +7,9 @@ import io
 load_dotenv()
 def generateQR(s):
     # get web_page from .env 
-    # a = os.environ.get('WEB_PAGE')
+    a = os.environ.get('WEB_PAGE')
     # print(a)
-    a="https://4b36-115-99-144-124.in.ngrok.io/"
+    #a="https://c75a-14-143-35-158.in.ngrok.io/"
     a = a+"getCustomer?key="+s
     # Generate QR code
     url = pyqrcode.create(a)

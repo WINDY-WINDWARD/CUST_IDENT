@@ -188,6 +188,7 @@ def signUp():
                         "address": data['address'], 
                         "name": data['name'], 
                         "password": data['password']})
+    # Stitching the data
     stitch.insert_one({"customerID": id, 
                         "deviceID": deviceID})
     return redirect(url_for('login'))
@@ -200,12 +201,17 @@ def loginApi():
     # get phone and password from the form
     phone = request.form["phone"]
     password = request.form["password"]
+    deviceID = request.cookies.get('userFingerPrint')
     if Customer.find_one({"phone": phone, "password": password}):
         # get user name from db
-        # data = Customer.find_one({"phone": phone, "password": password})
+        data = Customer.find_one({"phone": phone, "password": password})
         # name = data['name']
-        # id = data['_id']
+        custID = data['_id']
         # return render_template("message.html", message="Welcome Back " + name+" "+str(id))
+        if not(stitch.find_one({"deviceID": deviceID})):
+                stitch.insert_one({"customerID": custID,
+                                "deviceID": deviceID})
+
         return redirect(url_for('index'))
     else:
         return redirect(location=url_for('login', message="Wrong Username or Password"))
