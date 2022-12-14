@@ -9,6 +9,7 @@ from flask_session import Session
 from qrGen import generateQR
 from dotenv import load_dotenv
 from idGen import idGen
+import datetime
 import os
 from customerDataIP import getCustomersIP
 import logging
@@ -224,6 +225,9 @@ def salesDash():
             elif len(ipdata) == 1:
                 somethin = ipdata[0]
                 data = DataStream.find({"Did": somethin})
+                for i in data:
+                    i['timestamp'] = int(i['timestamp']) / 1000
+                    i['timestamp'] = datetime.datetime.fromtimestamp(i['timestamp']).strftime('%Y-%m-%d %H:%M:%S')
                 # print(data)
                 if stitch.find_one({"deviceID": somethin}):
                     customerID = stitch.find_one({"deviceID": somethin})['customerID']
@@ -238,7 +242,7 @@ def salesDash():
                 data = []
                 customerData = []
                 for i in ipdata:
-                    data.append(DataStream.find({"Did": i}))
+                    data.append(list(DataStream.find({"Did": i})))
                     if stitch.find_one({"deviceID": i}):
                         customerID = stitch.find_one({"deviceID": i})['customerID']
                         # print(customerID)
@@ -246,12 +250,21 @@ def salesDash():
                         # print(customerData)
                     else:
                         customerData.append(None)
+                for j in data:
+                    # print(j[1])
+                    # print("######################################################################")
+                    for k in j:
+                        k['timestamp'] = int(k['timestamp']) / 1000
+                        k['timestamp'] = datetime.datetime.fromtimestamp(k['timestamp']).strftime('%Y-%m-%d %H:%M:%S')
                 return render_template("salesDashboardMulti.html", usage=data, customerData=customerData)
 
         data = None
         if DataStream.find_one({"Did": userID}):
             data = list(DataStream.find({"Did": userID}))
-            print(data)
+            for i in data:
+                i['timestamp'] = int(i['timestamp']) / 1000
+                i['timestamp'] = datetime.datetime.fromtimestamp(i['timestamp']).strftime('%Y-%m-%d %H:%M:%S')
+            # print(data)
             if stitch.find_one({"deviceID": userID}):
                 customerID = stitch.find_one({"deviceID": userID})['customerID']
                 # print(customerID)
