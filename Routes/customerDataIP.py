@@ -59,14 +59,14 @@ def getCustomersIP(ip,DeviceFingerprint,stitch,DataStream):
 
     # get all stitch with same ids
     customersID = []
-    for id in ids:
-        if stitch.find_one({"deviceID":id}) != None:
+    for i in ids:
+        if stitch.find_one({"deviceID":i}) != None:
             # print(stitch.find_one({"deviceID":id}))
             # print(DataStream.find_one({"Did":id}))
-            if DataStream.find_one({"Did":id}):
-                customersID.append(id)
+            if DataStream.find_one({"Did":i}):
+                customersID.append(i)
             
-    # print(customersID[1][1])
+    print(customersID)
     return customersID
 
 
