@@ -214,46 +214,46 @@ def loginApi():
 def salesDash():
     # TODO: USING COOKIE MODIFY TO WORK WITH SESSION AND SALES REP ID + COOKIE
     if session.get('id') is not None:
-        fuckid = request.args.get('user')
+        userID = request.args.get('user')
         # print(id)
-        # if fuckid is None:
-        #     ip = request.session['ip']
-        #     ipdata = getCustomersIP(ip,DeviceFingerprint,stitch,DataStream)
-        #     if len(ipdata) == 0:
-        #         return render_template("salesDashboard.html", data=None, customerData=None)
-        #     elif len(ipdata) == 1:
-        #         fuckid = ipdata[0]
-        #         data = DataStream.find({"Did": fuckid})
-        #         # print(data)
-        #         if stitch.find_one({"deviceID": fuckid}):
-        #             customerID = stitch.find_one({"deviceID": fuckid})['customerID']
-        #             # print(customerID)
-        #             customerData = Customer.find_one({"_id": customerID})
-        #             # print(customerData)
-        #             return render_template("salesDashboard.html", data=data, customerData=customerData)
-        #             # return render_template("salesDashboard.html", data=data, customerData=None)
-        #         else:
-        #             return render_template("salesDashboard.html", data=data,customerData=None)
-        #     elif len(ipdata) > 1:
-        #         data = []
-        #         customerData = []
-        #         for i in ipdata:
-        #             data.append(DataStream.find({"Did": i}))
-        #             if stitch.find_one({"deviceID": fuckid}):
-        #                 customerID = stitch.find_one({"deviceID": fuckid})['customerID']
-        #                 # print(customerID)
-        #                 customerData.append(Customer.find_one({"_id": customerID}))
-        #                 # print(customerData)
-        #             else:
-        #                 customerData.append(None)
-        #         return render_template("salesDashboardMulti.html", data=data, customerData=customerData)
+        if not(DataStream.find_one({"Did": userID})):
+            ip = DeviceFingerprint.find_one({"_id":userID})["ipaddress"]
+            ipdata = getCustomersIP(ip,DeviceFingerprint,stitch,DataStream)
+            if len(ipdata) == 0:
+                return render_template("salesDashboard.html", usage=None, customerData=None)
+            elif len(ipdata) == 1:
+                somethin = ipdata[0]
+                data = DataStream.find({"Did": somethin})
+                # print(data)
+                if stitch.find_one({"deviceID": somethin}):
+                    customerID = stitch.find_one({"deviceID": somethin})['customerID']
+                    # print(customerID)
+                    customerData = Customer.find_one({"_id": customerID})
+                    # print(customerData)
+                    return render_template("salesDashboard.html", usage=data, customerData=customerData)
+                    # return render_template("salesDashboard.html", data=data, customerData=None)
+                else:
+                    return render_template("salesDashboard.html", usage=data,customerData=None)
+            elif len(ipdata) > 1:
+                data = []
+                customerData = []
+                for i in ipdata:
+                    data.append(DataStream.find({"Did": i}))
+                    if stitch.find_one({"deviceID": i}):
+                        customerID = stitch.find_one({"deviceID": i})['customerID']
+                        # print(customerID)
+                        customerData.append(Customer.find_one({"_id": customerID}))
+                        # print(customerData)
+                    else:
+                        customerData.append(None)
+                return render_template("salesDashboardMulti.html", usage=data, customerData=customerData)
 
         data = None
-        if DataStream.find_one({"Did": fuckid}):
-            data = list(DataStream.find({"Did": fuckid}))
+        if DataStream.find_one({"Did": userID}):
+            data = list(DataStream.find({"Did": userID}))
             print(data)
-            if stitch.find_one({"deviceID": fuckid}):
-                customerID = stitch.find_one({"deviceID": fuckid})['customerID']
+            if stitch.find_one({"deviceID": userID}):
+                customerID = stitch.find_one({"deviceID": userID})['customerID']
                 # print(customerID)
                 customerData = Customer.find_one({"_id": customerID})
                 # print(customerData)
