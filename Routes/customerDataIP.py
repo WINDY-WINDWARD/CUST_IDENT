@@ -66,7 +66,7 @@ def getCustomersIP(ip,DeviceFingerprint,stitch,DataStream):
             if DataStream.find_one({"Did":i}):
                 customersID.append(i)
             
-    print(customersID)
+    # print(customersID)
     return customersID
 
 
