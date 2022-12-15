@@ -1,28 +1,33 @@
 <h1> CodeMafia </h1>
-Team Members:
-    Karthik Sarode
-    Ashish Kumar
-    Sasikumar
-    Sai Ramana
 
-<br>
+
+Team Members:
+    <ul>
+    <li>Karthik Sarode</li>
+    <li>Ashish Kumar</li>
+    <li>Sasikumar</li>
+    <li>Sai Ramana</li>
+    </ul>
+    
+<p>
 To run this code:
 
 first install the following dependencies using pip
-
-Flask
-Flask-SocketIO
-Flask-Session
-PyQRcode
-pymongo
-python-dotenv
-
+<ul>
+<li>Flask</li>
+<li>Flask-SocketIO</li>
+<li>Flask-Session</li>
+<li>PyQRcode</li>
+<li>pymongo</li>
+<li>python-dotenv</li>
+</ul>
 
 create .env file in the routes directory
 
 setup the following:
 
 note: the project must be hosted on the default 80 port and the domain name shouldnt have a port number
+      the socket communication implemented for the production version doesnt support port numbers
 
 ```
 
@@ -103,3 +108,6 @@ Complete User Information When cookie created (setAnon)
 }
 
 ```
+
+ISSUE:
+we noticed devices with jio 5g connections are assigned IPv6 and the socket implemented is designed to only listen on ipv4 addresses currently, due to the limitations of our hosting provider 
