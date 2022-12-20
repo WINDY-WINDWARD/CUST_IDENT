@@ -1,4 +1,4 @@
-<h1>This project secured second place in 24Carathon held in december 2022</h1>
+<h1>This project secured second place in 24Caratahon held in december 2022</h1>
 <!-- add image ./Screenshot.jpg-->
 <img src="Screenshot from 2022-12-19 09-34-48.png" alt="Screenshot" width="1000" height="500">
 
