@@ -11,9 +11,9 @@
 Team Members:
     <ul>
     <li>Karthik Sarode</li>
-    <li>Ashish Kumar</li>
     <li>Sasikumar</li>
     <li>Sai Ramana</li>
+    <li>Ashish Kumar</li>
     </ul>
     
 <p>
